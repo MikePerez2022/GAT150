@@ -30,8 +30,8 @@ namespace jojo
 		std::vector<uint8_t> m_prevKeyboardState;
 
 		Vector2 m_mousePosition;
-		std::array<uint8_t, 4> m_mouseButtonState; 
-		std::array<uint8_t, 4> m_prevMouseButtonState;
+		std::array<uint8_t, 4> m_mouseButtonState = m_mouseButtonState;
+		std::array<uint8_t, 4> m_prevMouseButtonState = m_mouseButtonState;
 	};
 
 	extern InputSystem g_inputSystem;
