@@ -1,5 +1,5 @@
 #pragma once
-#include <..\ThirdParty\SDL2-2.28.0\include\SDL.h>
+#include "../ThirdParty/SDL2-2.28.0/include/SDL.h"
 #include "Core/Vector2.h"
 #include <vector>
 #include <array>
