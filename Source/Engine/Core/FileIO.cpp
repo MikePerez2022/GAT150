@@ -1,5 +1,7 @@
 #include "FileIO.h"
+#include "Core/Logger.h"
 #include <fstream>
+#include <iostream>
 
 namespace jojo
 {
@@ -14,6 +16,11 @@ namespace jojo
 		std::filesystem::current_path(path, ec);
 
 		return ec.value() == 0;
+	}
+
+	std::string GetFileName(const std::filesystem::path& path)
+	{
+		return path.filename().string();
 	}
 
 	bool fileExsists(const std::filesystem::path& path)
@@ -32,7 +39,11 @@ namespace jojo
 
 	bool readFile(const std::filesystem::path& path, std::string& buffer)
 	{
-		if (!fileExsists(path)) return false;
+		if (!fileExsists(path))
+		{
+			WARNING_LOG
+			return false;
+		}
 
 		size_t size;
 		if (!getFileSize(path, size)) return false;
@@ -45,6 +56,7 @@ namespace jojo
 
 		return true;
 	}
+
 	void writeFile(const std::filesystem::path& path, std::string& text)
 	{
 		std::ofstream stream;
@@ -55,6 +67,7 @@ namespace jojo
 
 		stream.close();
 	}
+
 	std::string loadFile(const std::filesystem::path& path)
 	{
 		if (!fileExsists(path)) return "";

@@ -13,6 +13,8 @@
 #include "Renderer/ParticleSystem.h"
 #include "Framework/Emitter.h"
 
+#include "Core/Logger.h"
+
 #include <iostream>
 #include <vector>
 #include <thread>
@@ -46,10 +48,12 @@ public:
 
 int main(int argc, char* argv[])
 {
+	INFO_LOG;//warning not working
+
+	jojo::MemoryTracker::Initialize();
 	jojo::seedRandom((unsigned int)time(nullptr));
 	jojo::setFilePath("assets");
 
-	jojo::MemoryTracker::Initialize();
 
 	jojo::g_renderer.Initalize();
 	jojo::g_renderer.CreateWindow("CSC196", 800, 600); 

@@ -72,7 +72,7 @@ void SpaceGame::Update(float dt)
 	case SpaceGame::eState::StartLevel:
 		m_scene->RemoveAll();
 	{
-		std::unique_ptr<Player> player = std::make_unique<Player>(Player::Player(200, jojo::Pi, jojo::Transform({ 400,300 }, 0, 6), jojo::g_modelManager.Get("ship.txt")));//
+		std::unique_ptr<Player> player = std::make_unique<Player>(Player::Player(200, jojo::Pi, jojo::Transform({ 400,300 }, 0, 6), jojo::g_modelManager.Get("shipz.txt")));//---------__----
 		player->m_health = 100;
 		player->m_tag = "Player";
 		player->SetDampening(1);
@@ -86,7 +86,7 @@ void SpaceGame::Update(float dt)
 		if (m_spawnTimer >= m_spawnTime)
 		{
 			m_spawnTimer = 0;
-			std::unique_ptr<Enemy> enemy = std::make_unique<Enemy>(Enemy::Enemy(jojo::randomf(75.0f, 150.0f), jojo::Pi, jojo::Transform({ 400 + jojo::random(1,300),300 + jojo::random(1,300)}, 0, 3), jojo::g_modelManager.Get("enemyShip.txt")));//
+			std::unique_ptr<Enemy> enemy = std::make_unique<Enemy>(Enemy::Enemy(jojo::randomf(75.0f, 150.0f), jojo::Pi, jojo::Transform({ 400 + jojo::random(1,300),300 + jojo::random(1,300)}, 0, 3), jojo::g_modelManager.Get("enemyShip.txt")));
 			enemy->m_tag = "Enemy";
 			enemy->SetDampening(1);
 			enemy->m_game = this;
@@ -98,7 +98,7 @@ void SpaceGame::Update(float dt)
 		{
 			m_spawnAsteroidTimer = 0;
 			m_spawnTimeAsteroid = jojo::randomf(5.0f, 10.0f);
-			std::unique_ptr<Asteroid> asteroid = std::make_unique<Asteroid>(jojo::randomf(20.0f, 150.0f), 1, jojo::Transform{{jojo::random(10, 700), 0}, 0, 6}, jojo::g_modelManager.Get("Asteroid.txt"));//
+			std::unique_ptr<Asteroid> asteroid = std::make_unique<Asteroid>(jojo::randomf(20.0f, 150.0f), (float)1, jojo::Transform{{jojo::random(10, 700), 0}, 0, 6}, jojo::g_modelManager.Get("Asteroid.txt"));
 			asteroid->m_tag = "Enemy";
 			asteroid->SetDampening(1);
 			asteroid->m_game = this;
