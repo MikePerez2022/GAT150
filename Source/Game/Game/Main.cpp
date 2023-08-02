@@ -14,6 +14,7 @@
 #include "Framework/Emitter.h"
 
 #include "Core/Logger.h"
+#include "Renderer/Texture.h"
 
 #include <iostream>
 #include <vector>
@@ -75,7 +76,9 @@ int main(int argc, char* argv[])
 		Stars.push_back(Star(pos, vel));
 	}
 
-	
+	// create texture
+	shared_ptr<jojo::Texture> texture = make_shared<jojo::Texture>();
+	texture->Create(jojo::g_renderer,"newship.PNG");
 
 	//Main game loop
 	bool quit = false;	
@@ -104,8 +107,11 @@ int main(int argc, char* argv[])
 		jojo::g_renderer.BeginFrame();
 
 		//draw
+		jojo::g_renderer.DrawTexture(texture.get(), 200.0f, 200.0f, 0.0f);
+
 		game->Draw(jojo::g_renderer);
 		jojo::g_particleSystem.Draw(jojo::g_renderer);
+
 				
 		jojo::Vector2 vel(1.0f, 0.3f);
 		for (auto& star : Stars)

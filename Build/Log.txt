@@ -1,1 +1,1 @@
-ASSERT: Main.cpp(52) pointer is null
+INFO: Main.cpp(52) hello world
