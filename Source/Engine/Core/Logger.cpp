@@ -4,31 +4,31 @@
 
 namespace jojo 
 {
-	Logger g_logger(LogLevel::Info, &std::cout);
+	Logger g_logger(LogLevel::Info, &std::cout, "Log.txt");
 
 	bool Logger::log(LogLevel logLevel, const std::string fileName, int line)
 	{
-		if (logLevel > m_logLevel) return false;
+		if (logLevel < m_logLevel) return false;
 
 		switch (logLevel)
 		{
 		case LogLevel::Info:
-			*m_ostream << "INFO: ";
+			*this << "INFO: ";
 			break;
 		case LogLevel::Warning:
-			*m_ostream << "WARNING: ";
+			*this << "WARNING: ";
 			break;
 		case LogLevel::Error:
-			*m_ostream << "ERROR: ";
+			*this << "ERROR: ";
 			break;
 		case LogLevel::Assert:
-			*m_ostream << "ASSERT: ";
+			*this << "ASSERT: ";
 			break;
 		default:
 			break;
 		}
 
-		*m_ostream << jojo::GetFileName(fileName) << "(" << line << ")\n";
+		*this << jojo::GetFileName(fileName) << "(" << line << ") ";
 
 		return true;
 	}

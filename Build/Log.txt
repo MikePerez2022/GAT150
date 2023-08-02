@@ -1,0 +1,1 @@
+ASSERT: Main.cpp(52) pointer is null

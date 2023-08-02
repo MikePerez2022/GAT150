@@ -6,6 +6,7 @@
 #include "Framework/Scene.h"
 #include "Renderer/ParticleSystem.h"
 #include "Framework/Emitter.h"
+#include "Core/Logger.h"
 
 #include "Audio/AudioSystem.h"
 #include "Input/InputSystem.h"
@@ -72,7 +73,7 @@ void SpaceGame::Update(float dt)
 	case SpaceGame::eState::StartLevel:
 		m_scene->RemoveAll();
 	{
-		std::unique_ptr<Player> player = std::make_unique<Player>(Player::Player(200, jojo::Pi, jojo::Transform({ 400,300 }, 0, 6), jojo::g_modelManager.Get("shipz.txt")));//---------__----
+		std::unique_ptr<Player> player = std::make_unique<Player>(Player::Player(200, jojo::Pi, jojo::Transform({ 400,300 }, 0, 6), jojo::g_modelManager.Get("ship.txt")));//---------__----
 		player->m_health = 100;
 		player->m_tag = "Player";
 		player->SetDampening(1);

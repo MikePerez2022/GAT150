@@ -48,7 +48,8 @@ public:
 
 int main(int argc, char* argv[])
 {
-	INFO_LOG;//warning not working
+	INFO_LOG("hello world");
+
 
 	jojo::MemoryTracker::Initialize();
 	jojo::seedRandom((unsigned int)time(nullptr));
