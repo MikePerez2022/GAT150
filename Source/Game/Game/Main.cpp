@@ -20,6 +20,8 @@
 #include <vector>
 #include <thread>
 #include <memory>
+#include <array>
+#include <map>
 
 using namespace std;
 
@@ -47,15 +49,19 @@ public:
 	jojo::vec2 m_vel;
 };
 
+
+
 int main(int argc, char* argv[])
 {
-	INFO_LOG("hello world");
 
+
+
+	INFO_LOG("hello world");
 
 	jojo::MemoryTracker::Initialize();
 	jojo::seedRandom((unsigned int)time(nullptr));
 	jojo::setFilePath("assets");
-
+	
 
 	jojo::g_renderer.Initalize();
 	jojo::g_renderer.CreateWindow("CSC196", 800, 600); 
@@ -78,7 +84,7 @@ int main(int argc, char* argv[])
 
 	// create texture
 	shared_ptr<jojo::Texture> texture = make_shared<jojo::Texture>();
-	texture->Create(jojo::g_renderer,"newship.PNG");
+	texture->Load("newship.PNG", jojo::g_renderer);
 
 	//Main game loop
 	bool quit = false;	
