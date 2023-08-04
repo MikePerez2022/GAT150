@@ -2,6 +2,7 @@
 #include "Core/Core.h"
 #include "Renderer/Model.h"
 #include "Audio/AudioSystem.h"
+#include "Components/Component.h"
 #include <memory>
 
 namespace jojo
@@ -18,6 +19,10 @@ namespace jojo
 
 		virtual void Update(float dt);
 		virtual void Draw(jojo::Renderer& renderer);
+
+
+		void AddComponent(std::unique_ptr<Component> component);
+
 
 		float GetRadius() { return (m_model) ? m_model->GetRadius() * m_transform.scale : 0; }
 		virtual void OnCollision(Actor* other) {}
@@ -37,6 +42,8 @@ namespace jojo
 		float m_lifespan = -1;
 
 	protected:
+		std::vector<std::unique_ptr<Component>> m_components;
+
 		bool m_destroyed = false;
 
 		std::shared_ptr<Model> m_model;

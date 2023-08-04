@@ -6,6 +6,7 @@
 #include "Enemy.h"
 #include "..\Engine\Audio\AudioSystem.h"
 #include "Framework/Scene.h"
+#include "Framework/Resource/ResourceManager.h"
 #include "Renderer/Text.h"
 #include "Renderer/Font.h"
 
@@ -49,13 +50,20 @@ public:
 	jojo::vec2 m_vel;
 };
 
+void print(int count, ...)
+{
+	va_list args;
 
+	va_start(args, count);
+	for (int i = 0; i < count; ++i)
+	{
+		std::cout << va_arg(args, const char*) << std::endl;
+	}
+	va_end(args);
+}
 
 int main(int argc, char* argv[])
 {
-
-
-
 	INFO_LOG("hello world");
 
 	jojo::MemoryTracker::Initialize();
@@ -83,8 +91,7 @@ int main(int argc, char* argv[])
 	}
 
 	// create texture
-	shared_ptr<jojo::Texture> texture = make_shared<jojo::Texture>();
-	texture->Load("newship.PNG", jojo::g_renderer);
+	jojo::res_t<jojo::Texture> texture = jojo::g_resources.Get<jojo::Texture>("newship.PNG", jojo::g_renderer);
 
 	//Main game loop
 	bool quit = false;	

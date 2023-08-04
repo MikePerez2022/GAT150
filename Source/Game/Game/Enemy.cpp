@@ -10,7 +10,7 @@ void Enemy::Update(float dt)
 {
 	Actor::Update(dt);
 
-	jojo::vec2 forward = jojo::vec2{ 0,1 }.Rotate(m_transform.rotation);
+	jojo::vec2 forward = jojo::vec2{ 0,-1 }.Rotate(m_transform.rotation);
 	Player* player = m_scene->GetActor<Player>();
 	if (player)
 	{

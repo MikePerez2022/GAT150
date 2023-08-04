@@ -75,8 +75,8 @@ namespace jojo
 		SDL_Rect dest;
 		dest.x = (int)x;
 		dest.y = (int)y;
-		dest.w = (int)size.x/10;//
-		dest.h = (int)size.y/10;//
+		dest.w = (int)size.x/8;//
+		dest.h = (int)size.y/8;//
 		// https://wiki.libsdl.org/SDL2/SDL_RenderCopyEx
 		SDL_RenderCopyEx(m_renderer,texture->m_texture,NULL,&dest,angle,NULL,SDL_FLIP_NONE);//
 	}
