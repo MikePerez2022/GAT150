@@ -1,12 +1,13 @@
 #pragma once
 #include "Core/Core.h"
 #include "Renderer.h"
+#include "Framework/Resource/Resource.h"
 #include <vector>
 
 
 namespace jojo
 {
-	class Model
+	class Model : public Resource
 	{
 	public:
 		Model() = default;
@@ -17,6 +18,9 @@ namespace jojo
 		void Draw(Renderer& renderer, const Transform& transform);
 
 		float GetRadius();
+
+		// Inherited via Resource
+		virtual bool Create(std::string filename, ...) override;
 
 	private:
 		std::vector<vec2> m_points;
