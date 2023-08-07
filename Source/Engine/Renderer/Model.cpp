@@ -65,6 +65,6 @@ namespace jojo
 	}
 	bool Model::Create(std::string filename, ...)
 	{
-		return false;
+		return Load(filename);
 	}
 }
