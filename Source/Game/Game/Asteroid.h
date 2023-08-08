@@ -6,8 +6,8 @@ class Asteroid : public jojo::Actor
 {
 public:
 	Asteroid() = default;
-	Asteroid(float speed, float turnRate, const jojo::Transform& transform, const std::shared_ptr<jojo::Model> model) :
-		Actor{ transform, model },
+	Asteroid(float speed, float turnRate, const jojo::Transform& transform) :
+		Actor{ transform},
 		m_speed{ speed },
 		m_turnRate{ turnRate }
 	{}

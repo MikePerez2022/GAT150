@@ -20,7 +20,7 @@ namespace jojo
 			for (auto iter2 = std::next(iter1, 1); iter2 != m_actors.end(); iter2++)
 			{	
 				float distance = (*iter1)->m_transform.position.Distance((*iter2)->m_transform.position);
-				float radius = (*iter1)->m_model->GetRadius() * (*iter2)->m_model->GetRadius();
+				float radius = (*iter1)->GetRadius() * (*iter2)->GetRadius();
 
 				if (distance <= radius)
 				{

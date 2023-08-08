@@ -6,8 +6,8 @@ class Bullet : public jojo::Actor
 {
 public:
 	Bullet() = default;
-	Bullet(float speed, const jojo::Transform& transform, const std::shared_ptr<jojo::Model> model) :
-		Actor{ transform, model },
+	Bullet(float speed, const jojo::Transform& transform) :
+		Actor{ transform},
 		m_speed{ speed }
 	{}
 

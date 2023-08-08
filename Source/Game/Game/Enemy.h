@@ -6,8 +6,8 @@ class Enemy : public jojo::Actor
 {
 public:
 	Enemy() = default;
-	Enemy(float speed, float turnRate, const jojo::Transform& transform, const std::shared_ptr<jojo::Model> model) :
-		Actor{ transform, model },
+	Enemy(float speed, float turnRate, const jojo::Transform& transform) :
+		Actor{ transform },
 		m_speed{ speed },
 		m_turnRate{ turnRate }
 	{

@@ -73,11 +73,14 @@ namespace jojo
 		vec2 size = texture->GetSize();
 
 		SDL_Rect dest;
-		dest.x = (int)x;
-		dest.y = (int)y;
-		dest.w = (int)size.x/8;//
-		dest.h = (int)size.y/8;//
+		dest.x = (int)x;//cast
+		dest.y = (int)y;//
+		dest.w = (int)size.x;// /8
+		dest.h = (int)size.y;// /8
+		SDL_Point jj;
+		jj.x = dest.w;
+		jj.y = dest.h;
 		// https://wiki.libsdl.org/SDL2/SDL_RenderCopyEx
-		SDL_RenderCopyEx(m_renderer,texture->m_texture,NULL,&dest,angle,NULL,SDL_FLIP_NONE);//
+		SDL_RenderCopyEx(m_renderer,texture->m_texture,NULL,&dest,angle,&jj,SDL_FLIP_NONE);//
 	}
 }

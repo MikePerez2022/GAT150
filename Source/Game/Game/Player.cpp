@@ -8,6 +8,7 @@
 #include "Framework/Emitter.h"
 #include "Framework/Components/SpriteComponent.h"
 #include "Framework/Resource/ResourceManager.h"
+#include "Framework/Components/PhysicsComponent.h"
 
 void Player::Update(float dt)
 {
@@ -23,7 +24,9 @@ void Player::Update(float dt)
 	if (jojo::g_inputSystem.GetKeyDown(SDL_SCANCODE_W)) thrust = 1;
 
 	jojo::vec2 forward = jojo::vec2{ 0,-1 }.Rotate(m_transform.rotation);
-	AddForce(forward * m_speed * thrust * dt);
+
+	auto physicsComponent = GetComponent<jojo::PhysicsComponent>();
+	physicsComponent->ApplyForce(forward * m_speed * thrust * dt);
 
 
 	m_transform.position.x = jojo::Wrap(m_transform.position.x, (float)jojo::g_renderer.GetWidth());
@@ -34,20 +37,20 @@ void Player::Update(float dt)
 	if (m_coolDownTimer >= m_coolDown && jojo::g_inputSystem.GetKeyDown(SDL_SCANCODE_SPACE) && !jojo::g_inputSystem.GetPreviousKeyDown(SDL_SCANCODE_SPACE))
 	{
 		jojo::Transform transform{m_transform.position, m_transform.rotation - jojo::DegreesToRadians(5), 2};
-		std::unique_ptr<Bullet> bullet = std::make_unique<Bullet>( Bullet{ 350, transform, jojo::g_modelManager.Get("ship.txt")});//
+		std::unique_ptr<Bullet> bullet = std::make_unique<Bullet>( Bullet{ 350, transform});//
 		bullet->m_tag = "Player";
 		//
 		std::unique_ptr<jojo::Sprite> component = std::make_unique<jojo::Sprite>();
-		component->m_texture = jojo::g_resources.Get<jojo::Texture>("bullet.png", jojo::g_renderer);
+		component->m_texture = jojo::g_resources.Get<jojo::Texture>("missle.png", jojo::g_renderer);
 		bullet->AddComponent(std::move(component));
 		m_scene->Add(std::move(bullet));
 
 		jojo::Transform transform2{m_transform.position, m_transform.rotation + jojo::DegreesToRadians(5), 2};
-		bullet = std::make_unique<Bullet>(Bullet{ 350, transform2, jojo::g_modelManager.Get("ship.txt") });//
+		bullet = std::make_unique<Bullet>(Bullet{ 350, transform2});//
 		bullet->m_tag = "Player";
 		//
 		component = std::make_unique<jojo::Sprite>();
-		component->m_texture = jojo::g_resources.Get<jojo::Texture>("bullet.png", jojo::g_renderer);
+		component->m_texture = jojo::g_resources.Get<jojo::Texture>("missle.png", jojo::g_renderer);
 		bullet->AddComponent(std::move(component));
 		m_scene->Add(std::move(bullet));
 

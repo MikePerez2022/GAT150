@@ -6,6 +6,7 @@
 #include "Framework/Scene.h"
 #include "Framework/Emitter.h"
 #include "Framework/Components/SpriteComponent.h"
+#include "Framework/Components/EnginePhysicsComponent.h"
 
 #include "Renderer/ParticleSystem.h"
 #include "Core/Logger.h"
@@ -75,15 +76,18 @@ void SpaceGame::Update(float dt)
 		m_scene->RemoveAll();
 	{
 		//creatplayer
-		std::unique_ptr<Player> player = std::make_unique<Player>(Player::Player(200, jojo::Pi, jojo::Transform({ 400,300 }, 0, 6), jojo::g_modelManager.Get("ship.txt")));//---------__----
+		std::unique_ptr<Player> player = std::make_unique<Player>(Player::Player(200, jojo::Pi, jojo::Transform({ 400,300 }, 0, 6)));//---------__----
 		player->m_health = 100;
 		player->m_tag = "Player";
-		player->SetDampening(1);
 		player->m_game = this;
 		//create components
 		std::unique_ptr<jojo::Sprite> component = std::make_unique<jojo::Sprite>();
 		component->m_texture = jojo::g_resources.Get<jojo::Texture>("newship.PNG", jojo::g_renderer);
 		player->AddComponent(std::move(component));
+		//
+		auto physicsComponent = std::make_unique<jojo::EnginePhysicsComponent>();
+		physicsComponent->m_dampening = 1;
+		player->AddComponent(std::move(physicsComponent));
 
 
 		m_scene->Add(std::move(player));
@@ -95,9 +99,8 @@ void SpaceGame::Update(float dt)
 		if (m_spawnTimer >= m_spawnTime)
 		{
 			m_spawnTimer = 0;
-			std::unique_ptr<Enemy> enemy = std::make_unique<Enemy>(Enemy::Enemy(jojo::randomf(75.0f, 150.0f), jojo::Pi, jojo::Transform({ 400 + jojo::random(1,300),300 + jojo::random(1,300)}, 0, 3), jojo::g_modelManager.Get("enemyShip.txt")));
+			std::unique_ptr<Enemy> enemy = std::make_unique<Enemy>(Enemy::Enemy(jojo::randomf(75.0f, 150.0f), jojo::Pi, jojo::Transform({ 400 + jojo::random(1,300),300 + jojo::random(1,300)}, 0, 3)));
 			enemy->m_tag = "Enemy";
-			enemy->SetDampening(1);
 			enemy->m_game = this;
 			//
 			std::unique_ptr<jojo::Sprite> component = std::make_unique<jojo::Sprite>();
@@ -113,9 +116,8 @@ void SpaceGame::Update(float dt)
 		{
 			m_spawnAsteroidTimer = 0;
 			m_spawnTimeAsteroid = jojo::randomf(5.0f, 10.0f);
-			std::unique_ptr<Asteroid> asteroid = std::make_unique<Asteroid>(jojo::randomf(20.0f, 150.0f), (float)1, jojo::Transform{{jojo::random(10, 700), 0}, 0, 6}, jojo::g_modelManager.Get("Asteroid.txt"));
+			std::unique_ptr<Asteroid> asteroid = std::make_unique<Asteroid>(jojo::randomf(20.0f, 150.0f), (float)1, jojo::Transform{{jojo::random(10, 700), 0}, 0, 6});
 			asteroid->m_tag = "Enemy";
-			asteroid->SetDampening(1);
 			asteroid->m_game = this;
 			//
 			std::unique_ptr<jojo::Sprite> component = std::make_unique<jojo::Sprite>();

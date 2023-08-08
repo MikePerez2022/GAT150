@@ -5,6 +5,7 @@
 #include "Bullet.h"
 #include "SpaceGame.h"
 #include "Framework/Emitter.h"
+#include "Framework/Components/EnginePhysicsComponent.h"
 
 void Enemy::Update(float dt)
 {
@@ -30,12 +31,14 @@ void Enemy::Update(float dt)
 	}
 
 	m_transform.position += forward * m_speed * jojo::g_time.GetDeltaTime();
+
+
 	m_transform.position.x = jojo::Wrap(m_transform.position.x, (float)jojo::g_renderer.GetWidth());
 	m_transform.position.y = jojo::Wrap(m_transform.position.y, (float)jojo::g_renderer.GetHeight());
 
 	if (m_fireTimer <= 0) {
 		jojo::Transform transform{m_transform.position, 0, m_transform.scale};
-		std::unique_ptr<Bullet> bullet = std::make_unique<Bullet>(Bullet{ 200, transform, jojo::g_modelManager.Get("ship.txt")});
+		std::unique_ptr<Bullet> bullet = std::make_unique<Bullet>(Bullet{ 200, transform});
 		bullet->m_tag = "Enemy";
 		m_scene->Add(std::move(bullet));
 

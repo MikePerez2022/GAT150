@@ -11,30 +11,25 @@ namespace jojo
 	{
 	public:
 		Actor() = default;
-		Actor(const jojo::Transform& transform, const std::shared_ptr<Model> model) :
-			m_transform{ transform },
-			m_model{ model } 
+		Actor(const jojo::Transform& transform) :
+			m_transform{ transform }
 		{}
-		Actor(const jojo::Transform& transform) : m_transform{ transform } {} 
 
 		virtual void Update(float dt);
 		virtual void Draw(jojo::Renderer& renderer);
 
 
 		void AddComponent(std::unique_ptr<Component> component);
+		template<typename T>
+		T* GetComponent();
 
 
-		float GetRadius() { return (m_model) ? m_model->GetRadius() * m_transform.scale : 0; }
+		float GetRadius() { return 5.0f; }
 		virtual void OnCollision(Actor* other) {}
-	
-		void AddForce(vec2 force) { m_velocity += force; }
-		void SetDampening(float dampening) { m_dampening = dampening; }
 		
 		class Scene* m_scene = nullptr;
 		friend class Scene;
 		class Game* m_game = nullptr;
-
-
 
 		jojo::Transform m_transform;
 		std::string m_tag;
@@ -43,13 +38,19 @@ namespace jojo
 
 	protected:
 		std::vector<std::unique_ptr<Component>> m_components;
-
 		bool m_destroyed = false;
-
-		std::shared_ptr<Model> m_model;
-
-		vec2 m_velocity;
-		float m_dampening = 0;
 	};
+
+	template<typename T>
+	inline T* Actor::GetComponent()
+	{
+		for (auto& component : m_components)
+		{
+			T* result = dynamic_cast<T*>(component.get());
+			if (result) return result;
+		}
+
+		return nullptr;
+	}
 }
 

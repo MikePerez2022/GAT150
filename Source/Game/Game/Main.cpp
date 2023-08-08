@@ -119,8 +119,6 @@ int main(int argc, char* argv[])
 		jojo::g_renderer.SetColor(0, 0, 0, 0);
 		jojo::g_renderer.BeginFrame();
 
-		//draw
-		jojo::g_renderer.DrawTexture(texture.get(), 200.0f, 200.0f, 0.0f);
 
 		game->Draw(jojo::g_renderer);
 		jojo::g_particleSystem.Draw(jojo::g_renderer);
