@@ -3,20 +3,12 @@
 #include "Enemy.h"
 #include "Asteroid.h"
 
-#include "Framework/Scene.h"
-#include "Framework/Emitter.h"
-#include "Framework/Components/SpriteComponent.h"
-#include "Framework/Components/EnginePhysicsComponent.h"
+#include "Framework/Framework.h"
 
-#include "Renderer/ParticleSystem.h"
 #include "Core/Logger.h"
-
 #include "Audio/AudioSystem.h"
 #include "Input/InputSystem.h"
 #include "Renderer/Renderer.h"
-#include "Renderer/Text.h"
-#include "Renderer/ModelManager.h"
-#include "Framework/Resource/ResourceManager.h"
 
 bool SpaceGame::Initalize()
 {

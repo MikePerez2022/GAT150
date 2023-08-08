@@ -1,21 +1,13 @@
+#include "Audio/AudioSystem.h"
 #include "Core/Core.h"
-#include "Renderer/Renderer.h"
-#include "Renderer/ModelManager.h"
+#include "Framework/Framework.h"
 #include "Input/InputSystem.h"
+#include "Renderer/Renderer.h"
+
 #include "Player.h"
 #include "Enemy.h"
-#include "..\Engine\Audio\AudioSystem.h"
-#include "Framework/Scene.h"
-#include "Framework/Resource/ResourceManager.h"
-#include "Renderer/Text.h"
-#include "Renderer/Font.h"
-
 #include "SpaceGame.h"
-#include "Renderer/ParticleSystem.h"
-#include "Framework/Emitter.h"
-
 #include "Core/Logger.h"
-#include "Renderer/Texture.h"
 
 #include <iostream>
 #include <vector>
@@ -64,7 +56,7 @@ void print(int count, ...)
 
 int main(int argc, char* argv[])
 {
-	INFO_LOG("hello world");
+	INFO_LOG("Initalize Engine");
 
 	jojo::MemoryTracker::Initialize();
 	jojo::seedRandom((unsigned int)time(nullptr));

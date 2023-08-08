@@ -1,6 +1,5 @@
 #pragma once
 #include "..\Engine\Framework\Actor.h"
-#include "Renderer/ModelManager.h"
 
 class Enemy : public jojo::Actor
 {

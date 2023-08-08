@@ -2,7 +2,6 @@
 #include "SpaceGame.h"
 #include "Input/InputSystem.h"
 #include "Renderer/Renderer.h"
-#include "Renderer/ModelManager.h"
 #include "..\Game\Bullet.h"
 #include "Framework/Scene.h"
 #include "Framework/Emitter.h"
