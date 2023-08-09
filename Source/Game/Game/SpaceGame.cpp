@@ -73,8 +73,8 @@ void SpaceGame::Update(float dt)
 		player->m_tag = "Player";
 		player->m_game = this;
 		//create components
-		std::unique_ptr<jojo::Sprite> component = std::make_unique<jojo::Sprite>();
-		component->m_texture = jojo::g_resources.Get<jojo::Texture>("newship.PNG", jojo::g_renderer);
+		std::unique_ptr<jojo::ModelRenderComponent> component = std::make_unique<jojo::ModelRenderComponent>();
+		component->m_model = jojo::g_resources.Get<jojo::Model>("ship.txt");
 		player->AddComponent(std::move(component));
 		//
 		auto physicsComponent = std::make_unique<jojo::EnginePhysicsComponent>();

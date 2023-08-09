@@ -1,6 +1,6 @@
 #pragma once
 #include "RenderComponent.h"
-#include "Renderer/Texture.h"
+#include "Renderer/Model.h"
 
 namespace jojo
 {
@@ -11,6 +11,6 @@ namespace jojo
 		void Draw(class Renderer& renderer) override;
 
 	public:
-		res_t<Texture> m_texture;
+		res_t<Model> m_model;
 	};
 }
