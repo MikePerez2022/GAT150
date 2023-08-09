@@ -3,7 +3,7 @@
 
 namespace jojo
 {
-	class Matrix22
+	class Matrix33
 	{
 	public:
 		vec2 rows[2];
