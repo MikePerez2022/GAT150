@@ -14,6 +14,8 @@ public:
 		m_fireTimer = m_fireRate;	
 	}
 
+	virtual bool Initalize();
+
 	void Update(float dt) override;
 	void OnCollision(Actor* other) override;
 

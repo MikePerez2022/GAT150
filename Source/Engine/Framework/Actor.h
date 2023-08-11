@@ -1,4 +1,5 @@
 #pragma once
+#include "Object.h"
 #include "Core/Core.h"
 #include "Renderer/Model.h"
 #include "Audio/AudioSystem.h"
@@ -7,13 +8,16 @@
 
 namespace jojo
 {
-	class Actor
+	class Actor : public Object
 	{
 	public:
 		Actor() = default;
 		Actor(const jojo::Transform& transform) :
 			m_transform{ transform }
 		{}
+
+		virtual bool Initialize() override;
+		virtual void OnDestroy() override;
 
 		virtual void Update(float dt);
 		virtual void Draw(jojo::Renderer& renderer);

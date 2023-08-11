@@ -11,6 +11,8 @@ public:
 		m_turnRate{ turnRate }
 	{}
 
+	virtual bool Initalize();
+
 	void Update(float dt) override;
 	void OnCollision(Actor* other) override;
 

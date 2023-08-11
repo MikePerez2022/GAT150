@@ -6,6 +6,27 @@
 #include "SpaceGame.h"
 #include "Framework/Emitter.h"
 #include "Framework/Components/EnginePhysicsComponent.h"
+#include "Framework/Components/CircleCollisionComponent.h"
+#include "Framework/Components/RenderComponent.h"
+
+bool Enemy::Initalize()
+{
+	Actor::Initialize();
+
+	auto collisionComponent = GetComponent<jojo::CollisionComponent>();
+
+	if (collisionComponent)
+	{
+		auto renderComponent = GetComponent<jojo::RenderComponent>();
+		if (renderComponent)
+		{
+			float scale = m_transform.scale;
+			collisionComponent->m_radius = GetComponent<jojo::RenderComponent>()->GetRadius() / scale;
+		}
+	}
+
+	return true;
+}
 
 void Enemy::Update(float dt)
 {

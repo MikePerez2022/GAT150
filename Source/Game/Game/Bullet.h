@@ -11,6 +11,8 @@ public:
 		m_speed{ speed }
 	{}
 
+	virtual bool Initalize();
+
 	void Update(float dt) override;
 	void OnCollision(Actor* other) override;
 

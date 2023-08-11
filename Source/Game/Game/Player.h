@@ -1,5 +1,6 @@
 #pragma once
 #include "..\Engine\Framework\Actor.h"
+#include "Framework/Components/PhysicsComponent.h"
 
 class Player : public jojo::Actor
 {
@@ -13,6 +14,7 @@ public:
 		m_lifespan = -1.0f;
 	}
 
+	bool Initialize() override;
 	void Update(float dt) override;
 	void OnCollision(Actor* other) override;
 
@@ -22,4 +24,6 @@ protected:
 
 	float m_coolDown = 1.5f;
 	float m_coolDownTimer = 0;
+
+	jojo::PhysicsComponent* m_physicsComponent = nullptr;
 };

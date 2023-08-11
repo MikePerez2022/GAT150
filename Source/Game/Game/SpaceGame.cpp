@@ -81,7 +81,11 @@ void SpaceGame::Update(float dt)
 		physicsComponent->m_dampening = 1;
 		player->AddComponent(std::move(physicsComponent));
 
+		auto collisionComponent = std::make_unique<jojo::CircleCollisionComponent>();
+		collisionComponent->m_radius = 10.0f;
+		player->AddComponent(std::move(collisionComponent));
 
+		player->Initialize();
 		m_scene->Add(std::move(player));
 	}
 	m_state = eState::Game;
@@ -99,6 +103,11 @@ void SpaceGame::Update(float dt)
 			component->m_texture = jojo::g_resources.Get<jojo::Texture>("enemy.PNG", jojo::g_renderer);
 			enemy->AddComponent(std::move(component));
 
+			auto collisionComponent = std::make_unique<jojo::CircleCollisionComponent>();
+			collisionComponent->m_radius = 5.0f;
+			enemy->AddComponent(std::move(collisionComponent));
+
+			enemy->Initialize();
 
 			m_scene->Add(std::move(enemy));
 
@@ -115,6 +124,12 @@ void SpaceGame::Update(float dt)
 			std::unique_ptr<jojo::Sprite> component = std::make_unique<jojo::Sprite>();
 			component->m_texture = jojo::g_resources.Get<jojo::Texture>("asteroid.png", jojo::g_renderer);
 			asteroid->AddComponent(std::move(component));
+
+			auto collisionComponent = std::make_unique<jojo::CircleCollisionComponent>();
+			collisionComponent->m_radius = 10.0f;
+			asteroid->AddComponent(std::move(collisionComponent));
+
+			asteroid->Initialize();
 
 			m_scene->Add(std::move(asteroid));
 		}

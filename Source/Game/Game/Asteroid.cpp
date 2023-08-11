@@ -6,6 +6,27 @@
 #include "SpaceGame.h"
 #include "Framework/Emitter.h"
 #include "Core/Random.h"
+#include "Framework/Components/CircleCollisionComponent.h"
+#include "Framework/Components/RenderComponent.h"
+
+bool Asteroid::Initalize()
+{
+	Actor::Initialize();
+
+	auto collisionComponent = GetComponent<jojo::CollisionComponent>();
+
+	if (collisionComponent)
+	{
+		auto renderComponent = GetComponent<jojo::RenderComponent>();
+		if (renderComponent)
+		{
+			float scale = m_transform.scale;
+			collisionComponent->m_radius = GetComponent<jojo::RenderComponent>()->GetRadius() / scale;
+		}
+	}
+
+	return true;
+}
 
 void Asteroid::Update(float dt)
 {

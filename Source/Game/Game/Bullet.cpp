@@ -1,5 +1,26 @@
 #include "Bullet.h"
 #include "Renderer/Renderer.h"
+#include "Framework/Components/CircleCollisionComponent.h"
+#include "Framework/Components/RenderComponent.h"
+
+bool Bullet::Initalize()
+{
+	Actor::Initialize();
+
+	auto collisionComponent = GetComponent<jojo::CollisionComponent>();
+
+	if (collisionComponent)
+	{
+		auto renderComponent = GetComponent<jojo::RenderComponent>();
+		if (renderComponent)
+		{
+			float scale = m_transform.scale;
+			collisionComponent->m_radius = GetComponent<jojo::RenderComponent>()->GetRadius() / scale;
+		}
+	}
+
+	return true;
+}
 
 void Bullet::Update(float dt)
 {

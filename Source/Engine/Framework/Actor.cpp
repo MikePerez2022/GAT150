@@ -3,6 +3,23 @@
 
 namespace jojo
 {
+	bool Actor::Initialize()
+	{
+		for (auto& component : m_components)
+		{
+			component->Initialize();
+		}
+
+		return true;
+	}
+	void Actor::OnDestroy()
+	{
+		for (auto& component : m_components)
+		{
+			component->OnDestroy();
+		}
+	}
+
 	void Actor::Update(float dt)
 	{
 		if (m_lifespan != -1.0f) 
@@ -17,6 +34,7 @@ namespace jojo
 		}
 
 	}
+
 	void Actor::Draw(jojo::Renderer& renderer)
 	{
 		//m_model->Draw(renderer, m_transform);

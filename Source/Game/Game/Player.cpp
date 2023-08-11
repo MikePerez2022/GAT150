@@ -7,7 +7,28 @@
 #include "Framework/Emitter.h"
 #include "Framework/Components/SpriteComponent.h"
 #include "Framework/Resource/ResourceManager.h"
-#include "Framework/Components/PhysicsComponent.h"
+#include "Framework/Components/CircleCollisionComponent.h"
+
+bool Player::Initialize()
+{
+	Actor::Initialize();
+
+	//Cache
+	m_physicsComponent = GetComponent<jojo::PhysicsComponent>();
+	auto collisionComponent = GetComponent<jojo::CollisionComponent>();
+
+	if (collisionComponent)
+	{
+		auto renderComponent = GetComponent<jojo::RenderComponent>();
+		if (renderComponent)
+		{
+			float scale = m_transform.scale;
+			collisionComponent->m_radius = GetComponent<jojo::RenderComponent>()->GetRadius() / scale;
+		}
+	}
+
+	return true;
+}
 
 void Player::Update(float dt)
 {
@@ -24,8 +45,7 @@ void Player::Update(float dt)
 
 	jojo::vec2 forward = jojo::vec2{ 0,-1 }.Rotate(m_transform.rotation);
 
-	auto physicsComponent = GetComponent<jojo::PhysicsComponent>();
-	physicsComponent->ApplyForce(forward * m_speed * thrust * dt);
+	m_physicsComponent->ApplyForce(forward * m_speed * thrust * dt);
 
 
 	m_transform.position.x = jojo::Wrap(m_transform.position.x, (float)jojo::g_renderer.GetWidth());
@@ -42,6 +62,12 @@ void Player::Update(float dt)
 		std::unique_ptr<jojo::Sprite> component = std::make_unique<jojo::Sprite>();
 		component->m_texture = jojo::g_resources.Get<jojo::Texture>("bullet.png", jojo::g_renderer);
 		bullet->AddComponent(std::move(component));
+		//
+		auto collisionComponent = std::make_unique<jojo::CircleCollisionComponent>();
+		collisionComponent->m_radius = 3.0f;
+		bullet->AddComponent(std::move(collisionComponent));
+
+		bullet->Initialize();
 		m_scene->Add(std::move(bullet));
 
 		jojo::Transform transform2{m_transform.position, m_transform.rotation + jojo::DegreesToRadians(5), 5};
@@ -51,6 +77,12 @@ void Player::Update(float dt)
 		component = std::make_unique<jojo::Sprite>();
 		component->m_texture = jojo::g_resources.Get<jojo::Texture>("bullet.png", jojo::g_renderer);
 		bullet->AddComponent(std::move(component));
+		//
+		collisionComponent = std::make_unique<jojo::CircleCollisionComponent>();
+		collisionComponent->m_radius = 3.0f;
+		bullet->AddComponent(std::move(collisionComponent));
+
+		bullet->Initialize();
 		m_scene->Add(std::move(bullet));
 
 		m_coolDownTimer = 0;
