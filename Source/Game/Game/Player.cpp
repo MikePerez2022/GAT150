@@ -35,21 +35,21 @@ void Player::Update(float dt)
 	m_coolDownTimer += dt;
 	if (m_coolDownTimer >= m_coolDown && jojo::g_inputSystem.GetKeyDown(SDL_SCANCODE_SPACE) && !jojo::g_inputSystem.GetPreviousKeyDown(SDL_SCANCODE_SPACE))
 	{
-		jojo::Transform transform{m_transform.position, m_transform.rotation - jojo::DegreesToRadians(5), 2};
+		jojo::Transform transform{m_transform.position, m_transform.rotation - jojo::DegreesToRadians(5), 5};
 		std::unique_ptr<Bullet> bullet = std::make_unique<Bullet>( Bullet{ 350, transform});//
 		bullet->m_tag = "Player";
 		//
 		std::unique_ptr<jojo::Sprite> component = std::make_unique<jojo::Sprite>();
-		component->m_texture = jojo::g_resources.Get<jojo::Texture>("missle.png", jojo::g_renderer);
+		component->m_texture = jojo::g_resources.Get<jojo::Texture>("bullet.png", jojo::g_renderer);
 		bullet->AddComponent(std::move(component));
 		m_scene->Add(std::move(bullet));
 
-		jojo::Transform transform2{m_transform.position, m_transform.rotation + jojo::DegreesToRadians(5), 2};
+		jojo::Transform transform2{m_transform.position, m_transform.rotation + jojo::DegreesToRadians(5), 5};
 		bullet = std::make_unique<Bullet>(Bullet{ 350, transform2});//
 		bullet->m_tag = "Player";
 		//
 		component = std::make_unique<jojo::Sprite>();
-		component->m_texture = jojo::g_resources.Get<jojo::Texture>("missle.png", jojo::g_renderer);
+		component->m_texture = jojo::g_resources.Get<jojo::Texture>("bullet.png", jojo::g_renderer);
 		bullet->AddComponent(std::move(component));
 		m_scene->Add(std::move(bullet));
 
