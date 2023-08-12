@@ -61,7 +61,33 @@ int main(int argc, char* argv[])
 	jojo::MemoryTracker::Initialize();
 	jojo::seedRandom((unsigned int)time(nullptr));
 	jojo::setFilePath("assets");
-	
+
+	rapidjson::Document document;
+	jojo::Json::Load("json.txt", document);
+
+	int i1;
+	jojo::Json::Read(document, "integer1", i1);
+	std::cout << i1 << std::endl;
+
+	int i2;
+	jojo::Json::Read(document, "integer2", i2);
+	std::cout << i2 << std::endl;
+
+	std::string str;
+	jojo::Json::Read(document, "string", str);
+	std::cout << str << std::endl;
+
+	bool b;
+	jojo::Json::Read(document, "boolean", b);
+	std::cout << b << std::endl;
+
+	float f;
+	jojo::Json::Read(document, "float", f);
+	std::cout << f << std::endl;
+
+	jojo::vec2 v2;
+	jojo::Json::Read(document, "vector2", v2);
+	std::cout << v2 << std::endl;
 
 	jojo::g_renderer.Initalize();
 	jojo::g_renderer.CreateWindow("CSC196", 800, 600); 
