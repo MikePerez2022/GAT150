@@ -4,6 +4,8 @@
 
 namespace jojo
 {
+	CLASS_DEFINITION(Sprite)
+
 	void jojo::Sprite::Update(float dt)
 	{
 		//

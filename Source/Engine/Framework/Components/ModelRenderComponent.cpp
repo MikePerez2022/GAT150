@@ -3,6 +3,7 @@
 
 namespace jojo
 {
+	CLASS_DEFINITION(ModelRenderComponent)
 
 	void jojo::ModelRenderComponent::Update(float dt)
 	{

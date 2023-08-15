@@ -3,6 +3,10 @@
 #include "Math/Vector2.h"
 #include <string>
 
+#define READ_DATA(value, data) jojo::Json::Read(value, #data, data);
+#define READ_DATA_REQUIRED(value, data) jojo::Json::Read(value, #data, data, true);
+
+
 namespace jojo
 {
 

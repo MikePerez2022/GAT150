@@ -54,8 +54,11 @@ void print(int count, ...)
 	va_end(args);
 }
 
+
 int main(int argc, char* argv[])
 {
+	//jojo::Factory::Instance().Register<jojo::Sprite>("Sprite");
+
 	INFO_LOG("Initalize Engine");
 
 	jojo::MemoryTracker::Initialize();
@@ -109,7 +112,8 @@ int main(int argc, char* argv[])
 	}
 
 	// create texture
-	jojo::res_t<jojo::Texture> texture = jojo::g_resources.Get<jojo::Texture>("newship.PNG", jojo::g_renderer);
+	//jojo::g_resources.Get<jojo::Texture>("newship.PNG", jojo::g_renderer)
+	jojo::res_t<jojo::Texture> texture = GET_RESOURCE(jojo::Texture,"newship.PNG",jojo::g_renderer);
 
 	//Main game loop
 	bool quit = false;	

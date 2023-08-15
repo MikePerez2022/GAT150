@@ -3,6 +3,9 @@
 
 namespace jojo
 {
+	CLASS_DEFINITION(CircleCollisionComponent)
+
+
 	void jojo::CircleCollisionComponent::Update(float dt)
 	{
 

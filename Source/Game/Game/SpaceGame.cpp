@@ -14,17 +14,19 @@ bool SpaceGame::Initalize()
 {
 
 	//create font
-	std::unique_ptr<jojo::Text> text = std::make_unique<jojo::Text>(jojo::g_resources.Get<jojo::Font>("ArcadeClassic.ttf", 24));
+	m_font = GET_RESOURCE(jojo::Font, "ArcadeClassic.ttf", 24);
+
+	std::unique_ptr<jojo::Text> text = std::make_unique<jojo::Text>(m_font);
 	text->Create(jojo::g_renderer, "NEUMONT", jojo::Color{ 81, 90, 1, 255 });
 
-	m_scoreText = std::make_unique<jojo::Text>(jojo::g_resources.Get<jojo::Font>("ArcadeClassic.ttf", 24));
-	m_highscoreText = std::make_unique<jojo::Text>(jojo::g_resources.Get<jojo::Font>("ArcadeClassic.ttf", 24));
+	m_scoreText = std::make_unique<jojo::Text>(m_font);
+	m_highscoreText = std::make_unique<jojo::Text>(m_font);
 	m_scoreText->Create(jojo::g_renderer, "ooooo", jojo::Color{ 1, 90, 71, 255 });
 
-	m_titleText = std::make_unique<jojo::Text>(jojo::g_resources.Get<jojo::Font>("ArcadeClassic.ttf", 24));
+	m_titleText = std::make_unique<jojo::Text>(m_font);
 	m_titleText->Create(jojo::g_renderer, "SPACE GAME", jojo::Color{ 91, 1, 1, 255 });
 
-	m_addText = std::make_unique<jojo::Text>(jojo::g_resources.Get<jojo::Font>("ArcadeClassic.ttf", 24));
+	m_addText = std::make_unique<jojo::Text>(m_font);
 	
 
 	//Load Audio
@@ -73,15 +75,15 @@ void SpaceGame::Update(float dt)
 		player->m_tag = "Player";
 		player->m_game = this;
 		//create components
-		std::unique_ptr<jojo::Sprite> component = std::make_unique<jojo::Sprite>();
-		component->m_texture = jojo::g_resources.Get<jojo::Texture>("newship.png", jojo::g_renderer);
+		auto component = CREATE_CLASS(Sprite);// jojo::Factory::Instance().Create<jojo::Sprite>("Sprite"); //std::make_unique<jojo::Sprite>();
+		component->m_texture = GET_RESOURCE(jojo::Texture, "newship.png", jojo::g_renderer);
 		player->AddComponent(std::move(component));
 		//
-		auto physicsComponent = std::make_unique<jojo::EnginePhysicsComponent>();
+		auto physicsComponent = CREATE_CLASS(EnginePhysicsComponent);// std::make_unique<jojo::EnginePhysicsComponent>();
 		physicsComponent->m_dampening = 1;
 		player->AddComponent(std::move(physicsComponent));
 
-		auto collisionComponent = std::make_unique<jojo::CircleCollisionComponent>();
+		auto collisionComponent = CREATE_CLASS(CircleCollisionComponent);// std::make_unique<jojo::CircleCollisionComponent>();
 		collisionComponent->m_radius = 10.0f;
 		player->AddComponent(std::move(collisionComponent));
 
@@ -100,11 +102,11 @@ void SpaceGame::Update(float dt)
 			enemy->m_game = this;
 			//
 			std::unique_ptr<jojo::Sprite> component = std::make_unique<jojo::Sprite>();
-			component->m_texture = jojo::g_resources.Get<jojo::Texture>("enemy.PNG", jojo::g_renderer);
+			component->m_texture = GET_RESOURCE(jojo::Texture, "enemy.PNG", jojo::g_renderer);
 			enemy->AddComponent(std::move(component));
 
 			auto collisionComponent = std::make_unique<jojo::CircleCollisionComponent>();
-			collisionComponent->m_radius = 5.0f;
+			collisionComponent->m_radius = 6.0f;
 			enemy->AddComponent(std::move(collisionComponent));
 
 			enemy->Initialize();
@@ -122,11 +124,11 @@ void SpaceGame::Update(float dt)
 			asteroid->m_game = this;
 			//
 			std::unique_ptr<jojo::Sprite> component = std::make_unique<jojo::Sprite>();
-			component->m_texture = jojo::g_resources.Get<jojo::Texture>("asteroid.png", jojo::g_renderer);
+			component->m_texture = GET_RESOURCE(jojo::Texture, "asteroid.png", jojo::g_renderer);
 			asteroid->AddComponent(std::move(component));
 
 			auto collisionComponent = std::make_unique<jojo::CircleCollisionComponent>();
-			collisionComponent->m_radius = 10.0f;
+			collisionComponent->m_radius = 13.0f;
 			asteroid->AddComponent(std::move(collisionComponent));
 
 			asteroid->Initialize();

@@ -11,6 +11,8 @@ namespace jojo
 	class Actor : public Object
 	{
 	public:
+		CLASS_DECLARATION(Actor)
+
 		Actor() = default;
 		Actor(const jojo::Transform& transform) :
 			m_transform{ transform }

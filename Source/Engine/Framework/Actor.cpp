@@ -3,6 +3,8 @@
 
 namespace jojo
 {
+	CLASS_DEFINITION(Actor)
+
 	bool Actor::Initialize()
 	{
 		for (auto& component : m_components)
@@ -54,6 +56,10 @@ namespace jojo
 		m_components.push_back(std::move(component));
 	}
 
+	bool Actor::Read(const rapidjson::Value& value)
+	{
+		return true;
+	}
 
 }
 

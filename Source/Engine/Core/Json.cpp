@@ -74,7 +74,7 @@ namespace jojo
 
 	bool Json::Read(const rapidjson::Value& value, const std::string& name, vec2& data, bool required)
 	{
-		if (!value.HasMember(name.c_str()) || !value[name.c_str()].IsArray() )// || !value[name.c_str()].Size() != 2 ??
+		if (!value.HasMember(name.c_str()) || !value[name.c_str()].IsArray() || value[name.c_str()].Size() != 2 )// || !value[name.c_str()].Size() != 2
 		{
 			if (required) ERROR_LOG("Cannot read required json data: " << name.c_str());
 			return false;

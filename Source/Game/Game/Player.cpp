@@ -60,7 +60,7 @@ void Player::Update(float dt)
 		bullet->m_tag = "Player";
 		//
 		std::unique_ptr<jojo::Sprite> component = std::make_unique<jojo::Sprite>();
-		component->m_texture = jojo::g_resources.Get<jojo::Texture>("bullet.png", jojo::g_renderer);
+		component->m_texture = GET_RESOURCE(jojo::Texture, "bullet.png", jojo::g_renderer);
 		bullet->AddComponent(std::move(component));
 		//
 		auto collisionComponent = std::make_unique<jojo::CircleCollisionComponent>();
@@ -75,7 +75,7 @@ void Player::Update(float dt)
 		bullet->m_tag = "Player";
 		//
 		component = std::make_unique<jojo::Sprite>();
-		component->m_texture = jojo::g_resources.Get<jojo::Texture>("bullet.png", jojo::g_renderer);
+		component->m_texture = GET_RESOURCE(jojo::Texture, "bullet.png", jojo::g_renderer);
 		bullet->AddComponent(std::move(component));
 		//
 		collisionComponent = std::make_unique<jojo::CircleCollisionComponent>();
