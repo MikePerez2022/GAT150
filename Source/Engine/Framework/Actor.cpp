@@ -18,10 +18,10 @@ namespace jojo
 			persistent = other.persistent;
 			prototype = other.prototype;
 
-			for (auto& component : components)
+			for (auto& component : other.components)
 			{
-				//auto cloneComponent = std::unique_ptr<Component>(dynamic_cast<Component&>(*component->Clone().release()));
-				//AddComponent(std::move(cloneComponent));
+				auto cloneComponent = std::unique_ptr<Component>(dynamic_cast<Component*>(component->Clone().release())); 
+				AddComponent(std::move(cloneComponent));
 			}
 
 		}

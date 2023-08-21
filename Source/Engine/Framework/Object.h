@@ -25,11 +25,13 @@ namespace jojo
 	class Object
 	{
 	public:
+		CLASS_DECLARATION(Object);
+
+
 		Object() = default;
 		Object(const std::string& name) : name{ name } {}
 		virtual ~Object() { OnDestroy(); }
 
-		CLASS_DECLARATION(Object)
 
 		virtual bool Initialize() { return true; }
 		virtual void OnDestroy() {}

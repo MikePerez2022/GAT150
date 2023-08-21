@@ -59,6 +59,7 @@ void Player::Update(float dt)
 		auto bullet = INSTANTIATE(Bullet, "Rocket");
 		bullet->transform = { transform.position, transform.rotation - jojo::DegreesToRadians(5), 5 };
 		bullet->Initalize();
+		bullet->active = true;
 		m_scene->Add(std::move(bullet));
 		
 	}

@@ -98,10 +98,11 @@ namespace jojo
 					std::string name = actor->name;
 					Factory::Instance().RegisterPrototype(name, std::move(actor));
 				}
-				else
+				else 
 				{
 					Add(std::move(actor));
 				}
+				
 			}
 		}
 	}

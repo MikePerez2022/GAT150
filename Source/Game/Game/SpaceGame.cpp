@@ -158,7 +158,7 @@ void SpaceGame::Update(float dt)
 		break;
 	}
 
-	m_scoreText->Create(jojo::g_renderer, "Score  " + std::to_string(m_score) + "          " + "Lives  " + std::to_string(GetLives()), {21,91,1,255});
+	m_scoreText->Create(jojo::g_renderer, "Score  " + std::to_string(m_score) + "          " + "Lives  " + std::to_string(GetLives()), {201,100,10,255});
 	m_highscoreText->Create(jojo::g_renderer, "HIGHSCORE  " + jojo::loadFile("highscore.txt"), {218,0,218,255});
 	m_scene->Update(dt); 
 }
@@ -192,8 +192,8 @@ void SpaceGame::Draw(jojo::Renderer& renderer)
 	}
 	else
 	{
-		m_scoreText->Draw(renderer, 290, 500);
 		m_scene->Draw(renderer);//draw this first - possible fix
+		m_scoreText->Draw(renderer, 290, 500);
 	}
 
 	
