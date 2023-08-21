@@ -20,7 +20,7 @@ bool Asteroid::Initalize()
 		auto renderComponent = GetComponent<jojo::RenderComponent>();
 		if (renderComponent)
 		{
-			float scale = m_transform.scale;
+			float scale = transform.scale;
 			collisionComponent->m_radius = GetComponent<jojo::RenderComponent>()->GetRadius() / scale;
 		}
 	}
@@ -34,22 +34,22 @@ void Asteroid::Update(float dt)
 
 	Player* player = m_scene->GetActor<Player>();
 
-	jojo::vec2 direction = m_transform.position - player->m_transform.position;
+	jojo::vec2 direction = transform.position - player->transform.position;
 
-	m_transform.rotation = direction.Angle() * jojo::HalfPi;
-	m_transform.rotation = m_transform.rotation * 4 * jojo::g_time.GetDeltaTime();
+	transform.rotation = direction.Angle() * jojo::HalfPi;
+	transform.rotation = transform.rotation * 4 * jojo::g_time.GetDeltaTime();
 
-	jojo::vec2 forward = jojo::vec2{ 0,1 }.Rotate(m_transform.rotation);
-	m_transform.position += forward * m_speed * 1 * jojo::g_time.GetDeltaTime();
+	jojo::vec2 forward = jojo::vec2{ 0,1 }.Rotate(transform.rotation);
+	transform.position += forward * m_speed * 1 * jojo::g_time.GetDeltaTime();
 	//m_transform.position += forward * m_speed * jojo::g_time.GetDeltaTime();
-	m_transform.position.x = jojo::Wrap(m_transform.position.x, (float)jojo::g_renderer.GetWidth());
+	transform.position.x = jojo::Wrap(transform.position.x, (float)jojo::g_renderer.GetWidth());
 
 }
 
 void Asteroid::OnCollision(Actor* other)
 {
 
-	if (other->m_tag == "Player")
+	if (other->tag == "Player")
 	{
 		m_game->RemovePoints(50);
 		m_destroyed = true;
@@ -66,9 +66,9 @@ void Asteroid::OnCollision(Actor* other)
 		data.speedMax = 250;
 		data.damping = 0.5f;
 		data.color = jojo::Color{ 200, 0, 0, 255 };
-		jojo::Transform transform{ m_transform.position, 0, 6 };
+		jojo::Transform transform{ this->transform.position, 0, 6 };
 		auto emitter = std::make_unique<jojo::Emitter>(transform, data);
-		emitter->m_lifespan = 1.0f;
+		emitter->lifespan = 1.0f;
 		m_scene->Add(std::move(emitter));
 
 		jojo::g_audioSystem.PlayOneShot("hit", false);

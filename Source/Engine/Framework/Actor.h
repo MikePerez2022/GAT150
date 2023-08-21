@@ -15,8 +15,10 @@ namespace jojo
 
 		Actor() = default;
 		Actor(const jojo::Transform& transform) :
-			m_transform{ transform }
+			transform{ transform }
 		{}
+
+		Actor(const Actor& other);
 
 		virtual bool Initialize() override;
 		virtual void OnDestroy() override;
@@ -37,20 +39,22 @@ namespace jojo
 		friend class Scene;
 		class Game* m_game = nullptr;
 
-		jojo::Transform m_transform;
-		std::string m_tag;
-		float m_health = 0;
-		float m_lifespan = -1;
+		jojo::Transform transform;
+		std::string tag;
+		float health = 0;
+		float lifespan = -1;
+		bool persistent = false;
+		bool prototype = false;
 
-	protected:
-		std::vector<std::unique_ptr<Component>> m_components;
+	public:
+		std::vector<std::unique_ptr<Component>> components;
 		bool m_destroyed = false;
 	};
 
 	template<typename T>
 	inline T* Actor::GetComponent()
 	{
-		for (auto& component : m_components)
+		for (auto& component : components)
 		{
 			T* result = dynamic_cast<T*>(component.get());
 			if (result) return result;

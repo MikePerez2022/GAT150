@@ -1,22 +1,19 @@
 #pragma once
 #include "..\Engine\Framework\Actor.h"
 
-
-class Bullet : public jojo::Actor
+namespace jojo
 {
-public:
-	Bullet() = default;
-	Bullet(float speed, const jojo::Transform& transform) :
-		Actor{ transform},
-		m_speed{ speed }
-	{}
+	class Bullet : public Actor
+	{
+	public:
+		CLASS_DECLARATION(Bullet)
 
-	virtual bool Initalize();
+		virtual bool Initalize();
 
-	void Update(float dt) override;
-	void OnCollision(Actor* other) override;
+		void Update(float dt) override;
+		void OnCollision(Actor* other);
 
-protected:
-	float m_speed = 0;
-	float m_turnRate = 0;
-};
+	protected:
+		float speed = 0;
+	};
+}

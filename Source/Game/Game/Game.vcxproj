@@ -195,6 +195,9 @@
     <ClInclude Include="Player.h" />
     <ClInclude Include="SpaceGame.h" />
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\..\..\Build\Assets\scene.json" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

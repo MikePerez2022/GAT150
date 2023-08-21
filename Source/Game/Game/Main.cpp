@@ -65,33 +65,6 @@ int main(int argc, char* argv[])
 	jojo::seedRandom((unsigned int)time(nullptr));
 	jojo::setFilePath("assets");
 
-	rapidjson::Document document;
-	jojo::Json::Load("json.txt", document);
-
-	int i1;
-	jojo::Json::Read(document, "integer1", i1);
-	std::cout << i1 << std::endl;
-
-	int i2;
-	jojo::Json::Read(document, "integer2", i2);
-	std::cout << i2 << std::endl;
-
-	std::string str;
-	jojo::Json::Read(document, "string", str);
-	std::cout << str << std::endl;
-
-	bool b;
-	jojo::Json::Read(document, "boolean", b);
-	std::cout << b << std::endl;
-
-	float f;
-	jojo::Json::Read(document, "float", f);
-	std::cout << f << std::endl;
-
-	jojo::vec2 v2;
-	jojo::Json::Read(document, "vector2", v2);
-	std::cout << v2 << std::endl;
-
 	jojo::g_renderer.Initalize();
 	jojo::g_renderer.CreateWindow("CSC196", 800, 600); 
 
@@ -104,7 +77,7 @@ int main(int argc, char* argv[])
 
 	vector<Star> Stars; 
 	vector<jojo::Vector2> points;
-	for (int i = 0; i < 1000; i++)
+	for (int i = 0; i < 100; i++)
 	{
 		jojo::Vector2 pos(jojo::random(jojo::g_renderer.GetWidth()), jojo::random(jojo::g_renderer.GetHeight()));
 		jojo::Vector2 vel(jojo::randomf(100,400), 0.0f);
@@ -141,11 +114,10 @@ int main(int argc, char* argv[])
 		jojo::g_renderer.SetColor(0, 0, 0, 0);
 		jojo::g_renderer.BeginFrame();
 
-
 		game->Draw(jojo::g_renderer);
+
 		jojo::g_particleSystem.Draw(jojo::g_renderer);
 
-				
 		jojo::Vector2 vel(1.0f, 0.3f);
 		for (auto& star : Stars)
 		{
@@ -153,6 +125,7 @@ int main(int argc, char* argv[])
 			jojo::g_renderer.SetColor(jojo::random(256), jojo::random(256), jojo::random(256), 200);
 			star.Draw(jojo::g_renderer);
 		}
+		
 
 		jojo::g_renderer.EndFrame();		
 	}

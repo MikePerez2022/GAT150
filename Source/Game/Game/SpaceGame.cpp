@@ -40,6 +40,8 @@ bool SpaceGame::Initalize()
 	//scene
 	m_scene = std::make_unique<jojo::Scene>();
 
+	m_scene->Load("scene.json");
+	m_scene->Initialize();
 
     return true;
 }
@@ -71,8 +73,8 @@ void SpaceGame::Update(float dt)
 	{
 		//creatplayer
 		std::unique_ptr<Player> player = std::make_unique<Player>(Player::Player(200, jojo::Pi, jojo::Transform({ 400,300 }, 0, 10)));//---------__----
-		player->m_health = 100;
-		player->m_tag = "Player";
+		player->health = 100;
+		player->tag = "Player";
 		player->m_game = this;
 		//create components
 		auto component = CREATE_CLASS(Sprite);// jojo::Factory::Instance().Create<jojo::Sprite>("Sprite"); //std::make_unique<jojo::Sprite>();
@@ -98,7 +100,7 @@ void SpaceGame::Update(float dt)
 		{
 			m_spawnTimer = 0;
 			std::unique_ptr<Enemy> enemy = std::make_unique<Enemy>(Enemy::Enemy(jojo::randomf(75.0f, 150.0f), jojo::Pi, jojo::Transform({ 400 + jojo::random(1,300),300 + jojo::random(1,300)}, 0, 8)));
-			enemy->m_tag = "Enemy";
+			enemy->tag = "Enemy";
 			enemy->m_game = this;
 			//
 			std::unique_ptr<jojo::Sprite> component = std::make_unique<jojo::Sprite>();
@@ -120,7 +122,7 @@ void SpaceGame::Update(float dt)
 			m_spawnAsteroidTimer = 0;
 			m_spawnTimeAsteroid = jojo::randomf(5.0f, 10.0f);
 			std::unique_ptr<Asteroid> asteroid = std::make_unique<Asteroid>(jojo::randomf(20.0f, 150.0f), (float)1, jojo::Transform{{jojo::random(10, 700), 0}, 0, 12});
-			asteroid->m_tag = "Enemy";
+			asteroid->tag = "Enemy";
 			asteroid->m_game = this;
 			//
 			std::unique_ptr<jojo::Sprite> component = std::make_unique<jojo::Sprite>();
@@ -171,11 +173,6 @@ void SpaceGame::Draw(jojo::Renderer& renderer)
 		m_scoreText->Draw(renderer, 290, 500);
 		m_highscoreText->Draw(renderer, 310, 100);
 
-		if (jojo::g_inputSystem.GetKeyDown(SDL_SCANCODE_P) && !jojo::g_inputSystem.GetPreviousKeyDown(SDL_SCANCODE_P))
-		{
-			jojo::g_audioSystem.PlayOneShot("gameplay", true);
-			//jojo::g_audioSystem.PlayOneShot("intro", false);
-		}
 
 	}
 	else if (m_state == eState::GameOver)
@@ -191,23 +188,12 @@ void SpaceGame::Draw(jojo::Renderer& renderer)
 			jojo::writeFile("highscore.txt", input);
 		}
 		m_highscoreText->Draw(renderer, 290, 100);
-
-		if (jojo::g_inputSystem.GetKeyDown(SDL_SCANCODE_P) && !jojo::g_inputSystem.GetPreviousKeyDown(SDL_SCANCODE_P))
-		{
-			//jojo::g_audioSystem.PlayOneShot("gameover", false);
-			//jojo::g_audioSystem.PlayOneShot("over", false);
-		}
-
 		
 	}
 	else
 	{
 		m_scoreText->Draw(renderer, 290, 500);
-		m_scene->Draw(renderer);
-		if (jojo::g_inputSystem.GetKeyDown(SDL_SCANCODE_P) && !jojo::g_inputSystem.GetPreviousKeyDown(SDL_SCANCODE_P))
-		{
-			//jojo::g_audioSystem.PlayOneShot("gameplay", true);
-		}
+		m_scene->Draw(renderer);//draw this first - possible fix
 	}
 
 	

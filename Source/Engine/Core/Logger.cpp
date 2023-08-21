@@ -4,7 +4,6 @@
 
 namespace jojo 
 {
-	Logger g_logger(LogLevel::Info, &std::cout, "Log.txt");
 
 	bool Logger::log(LogLevel logLevel, const std::string fileName, int line)
 	{

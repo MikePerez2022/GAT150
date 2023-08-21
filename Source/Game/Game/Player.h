@@ -11,7 +11,7 @@ public:
 		m_speed{ speed },
 		m_turnRate{ turnRate } 
 	{
-		m_lifespan = -1.0f;
+		lifespan = -1.0f;
 	}
 
 	bool Initialize() override;

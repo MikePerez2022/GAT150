@@ -4,13 +4,21 @@
 
 namespace jojo
 {
+	bool Scene::Initialize()
+	{
+		for (auto& actor : m_actors) actor->Initialize();
+
+		return true;
+	}
+
 	void Scene::Update(float dt)
 	{
 
 		auto iter = m_actors.begin();
 		while (iter != m_actors.end())
 		{
-			(*iter)->Update(dt);
+			if ((*iter)->active) (*iter)->Update(dt);//  !
+
 			((*iter)->m_destroyed) ? iter = m_actors.erase(iter) : iter++;
 			
 		}
@@ -40,7 +48,7 @@ namespace jojo
 	{
 		for (auto& actor : m_actors)
 		{
-			actor->Draw(renderer);
+			if(actor->active) actor->Draw(renderer);
 		}
 	}
 
@@ -50,9 +58,52 @@ namespace jojo
 		m_actors.push_back(std::move(actor));	
 	}
 
-	void Scene::RemoveAll()
+	void Scene::RemoveAll(bool force)
 	{
-		m_actors.clear();
+		auto iter = m_actors.begin();
+		while (iter != m_actors.end())
+		{
+			(force || !(*iter)->persistent) ? iter = m_actors.erase(iter) : iter++;
+
+		}
+	}
+
+	bool Scene::Load(const std::string& filename)
+	{
+		rapidjson::Document doc;
+		if (!Json::Load(filename, doc))
+		{
+			ERROR_LOG("Could not load scene file: " << filename);
+		}
+
+		Read(doc);
+
+		return true;
+	}
+
+	void Scene::Read(const rapidjson::Value& value)
+	{
+		if (HAS_DATA(value, actors) && GET_DATA(value, actors).IsArray())
+		{
+			for (auto& actorValue : GET_DATA(value, actors).GetArray())
+			{
+				std::string type;
+				READ_DATA(actorValue, type);
+
+				auto actor = CREATE_CLASS_BASE(Actor, type);
+				actor->Read(actorValue);
+
+				if (actor->prototype)
+				{
+					std::string name = actor->name;
+					Factory::Instance().RegisterPrototype(name, std::move(actor));
+				}
+				else
+				{
+					Add(std::move(actor));
+				}
+			}
+		}
 	}
 
 }

@@ -1,13 +1,15 @@
 #pragma once
+#include "Framework/Singleton.h"
 #include <string>
 #include <cassert>
 #include <fstream>
+#include <iostream>
 
 #ifdef  _DEBUG
-#define INFO_LOG(message)		{ if(jojo::g_logger.log(jojo::LogLevel::Info, __FILE__, __LINE__)) {jojo::g_logger << message << "\n";} }
-#define WARNING_LOG(message)	{ if(jojo::g_logger.log(jojo::LogLevel::Warning, __FILE__, __LINE__)) {jojo::g_logger << message << "\n";} }
-#define ERROR_LOG(message)		{ if(jojo::g_logger.log(jojo::LogLevel::Error, __FILE__, __LINE__)) {jojo::g_logger << message << "\n";} }
-#define ASSERT_LOG(condition, message) { if(!condition && jojo::g_logger.log(jojo::LogLevel::Assert, __FILE__, __LINE__)) {jojo::g_logger << message << "\n";} assert(condition);}
+#define INFO_LOG(message)		{ if(jojo::Logger::Instance().log(jojo::LogLevel::Info, __FILE__, __LINE__)) {jojo::Logger::Instance() << message << "\n";} }
+#define WARNING_LOG(message)	{ if(jojo::Logger::Instance().log(jojo::LogLevel::Warning, __FILE__, __LINE__)) {jojo::Logger::Instance() << message << "\n";} }
+#define ERROR_LOG(message)		{ if(jojo::Logger::Instance().log(jojo::LogLevel::Error, __FILE__, __LINE__)) {jojo::Logger::Instance() << message << "\n";} }
+#define ASSERT_LOG(condition, message) { if(!condition && jojo::Logger::Instance().log(jojo::LogLevel::Assert, __FILE__, __LINE__)) {jojo::Logger::Instance() << message << "\n";} assert(condition);}
 #else
 #define INFO_LOG(message)		{}
 #define WARNING_LOG(message)	{}
@@ -26,10 +28,10 @@ namespace jojo
 		Assert
 	};
 
-	class Logger
+	class Logger : public Singleton<Logger>
 	{
 	public:
-		Logger(LogLevel logLevel, std::ostream* ostream, const std::string& filename = "") :
+		Logger(LogLevel logLevel = LogLevel::Info, std::ostream* ostream = &std::cout, const std::string& filename = "Log.txt") :
 			m_logLevel{ logLevel }, 
 			m_ostream{ ostream } 
 		{
@@ -48,7 +50,6 @@ namespace jojo
 		std::ofstream m_fstream;
 	};
 
-	extern Logger g_logger;
 
 	template<typename T>
 	inline Logger& Logger::operator<<(T value)

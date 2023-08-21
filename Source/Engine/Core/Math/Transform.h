@@ -2,6 +2,7 @@
 #include "Vector2.h"
 #include "Matrix22.h"
 #include "Matrix33.h"
+#include "Core/Json.h"
 
 namespace jojo
 {
@@ -30,5 +31,7 @@ namespace jojo
 
 			return mx;
 		}
+
+		void Read(const json_t& value);
 	};
 }
