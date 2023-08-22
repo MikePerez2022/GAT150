@@ -9,8 +9,8 @@ namespace jojo
 
 	bool Sprite::Initialize()
 	{
-		//if (texturename.empty()) return false;
-
+		if (texturename.empty()) return false;
+		
 		m_texture = GET_RESOURCE(Texture,texturename, g_renderer);
 
 		return true;

@@ -76,6 +76,7 @@ void SpaceGame::Update(float dt)
 		player->health = 100;
 		player->tag = "Player";
 		player->m_game = this;
+		player->active = true;
 		//create components
 		auto component = CREATE_CLASS(Sprite);// jojo::Factory::Instance().Create<jojo::Sprite>("Sprite"); //std::make_unique<jojo::Sprite>();
 		component->m_texture = GET_RESOURCE(jojo::Texture, "newship.png", jojo::g_renderer);
@@ -102,6 +103,7 @@ void SpaceGame::Update(float dt)
 			std::unique_ptr<Enemy> enemy = std::make_unique<Enemy>(Enemy::Enemy(jojo::randomf(75.0f, 150.0f), jojo::Pi, jojo::Transform({ 400 + jojo::random(1,300),300 + jojo::random(1,300)}, 0, 8)));
 			enemy->tag = "Enemy";
 			enemy->m_game = this;
+			enemy->active = true;
 			//
 			std::unique_ptr<jojo::Sprite> component = std::make_unique<jojo::Sprite>();
 			component->m_texture = GET_RESOURCE(jojo::Texture, "enemy.PNG", jojo::g_renderer);
@@ -124,6 +126,7 @@ void SpaceGame::Update(float dt)
 			std::unique_ptr<Asteroid> asteroid = std::make_unique<Asteroid>(jojo::randomf(20.0f, 150.0f), (float)1, jojo::Transform{{jojo::random(10, 700), 0}, 0, 12});
 			asteroid->tag = "Enemy";
 			asteroid->m_game = this;
+			asteroid->active = true;
 			//
 			std::unique_ptr<jojo::Sprite> component = std::make_unique<jojo::Sprite>();
 			component->m_texture = GET_RESOURCE(jojo::Texture, "asteroid.png", jojo::g_renderer);

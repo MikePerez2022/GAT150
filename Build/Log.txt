@@ -4,5 +4,5 @@ INFO: Factory.h(76) Class Registered: ModelRenderComponent
 INFO: Factory.h(76) Class Registered: EnginePhysicsComponent
 INFO: Factory.h(76) Class Registered: CircleCollisionComponent
 INFO: Factory.h(76) Class Registered: Actor
-INFO: Main.cpp(62) Initalize Engine
+INFO: Main.cpp(64) Initalize Engine
 INFO: Factory.h(85) Prototype Class Registered: Rocket

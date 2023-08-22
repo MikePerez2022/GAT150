@@ -9,6 +9,8 @@
 #include "SpaceGame.h"
 #include "Core/Logger.h"
 
+#include "Physics/PhysicsSystem.h"
+
 #include <iostream>
 #include <vector>
 #include <thread>
@@ -70,6 +72,7 @@ int main(int argc, char* argv[])
 
 	jojo::g_inputSystem.Initialize();
 	jojo::g_audioSystem.Initialize();
+	jojo::PhysicsSystem::Instance().Initialize();
 
 
 	unique_ptr<SpaceGame> game = std::make_unique<SpaceGame>();
