@@ -1,6 +1,8 @@
 #pragma once
 #include "Particle.h"
 #include <vector>
+#include "Renderer/Renderer.h"
+#include "Framework/Singleton.h"
 
 namespace jojo
 {

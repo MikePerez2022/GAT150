@@ -2,8 +2,11 @@
 #include "Framework/Game.h"
 #include "Renderer/Text.h"
 #include "Core/Random.h"
+#include "Framework/Event/EventManager.h"
 
-class SpaceGame : public jojo::Game, jojo::IEventListener
+
+
+class SpaceGame : public jojo::Game
 {
 public:
 	enum class eState
@@ -25,11 +28,13 @@ public:
 	virtual void Draw(jojo::Renderer& renderer) override;
 
 	void SetState(eState state) { m_state = state; }
+	void addPoints(const jojo::Event& event);
+	void OnPlayerDead(const jojo::Event& event);
 
 	friend class Game;
 
-private:
 	eState m_state = eState::Title;
+protected:
 	float m_spawnTimer = 0;
 	float m_spawnAsteroidTimer = 0;
 	float m_spawnTime = 3;

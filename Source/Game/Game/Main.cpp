@@ -3,11 +3,13 @@
 #include "Framework/Framework.h"
 #include "Input/InputSystem.h"
 #include "Renderer/Renderer.h"
+#include <functional>
 
 #include "Player.h"
 #include "Enemy.h"
 #include "SpaceGame.h"
 #include "Core/Logger.h"
+
 
 #include "Physics/PhysicsSystem.h"
 
@@ -44,19 +46,6 @@ public:
 	jojo::vec2 m_vel;
 };
 
-void print(int count, ...)
-{
-	va_list args;
-
-	va_start(args, count);
-	for (int i = 0; i < count; ++i)
-	{
-		std::cout << va_arg(args, const char*) << std::endl;
-	}
-	va_end(args);
-}
-
-
 int main(int argc, char* argv[])
 {
 	//jojo::Factory::Instance().Register<jojo::Sprite>("Sprite");
@@ -87,9 +76,6 @@ int main(int argc, char* argv[])
 		Stars.push_back(Star(pos, vel));
 	}
 
-	// create texture
-	//jojo::g_resources.Get<jojo::Texture>("newship.PNG", jojo::g_renderer)
-	jojo::res_t<jojo::Texture> texture = GET_RESOURCE(jojo::Texture,"newship.PNG",jojo::g_renderer);
 
 	//Main game loop
 	bool quit = false;	
@@ -108,6 +94,8 @@ int main(int argc, char* argv[])
 		game->Update(jojo::g_time.GetDeltaTime());
 
 		jojo::g_particleSystem.Update(jojo::g_time.GetDeltaTime());
+		//jojo::ParticleSystem::Instance().Update(jojo::g_time.GetDeltaTime());
+
 		
 		if (jojo::g_inputSystem.GetKeyDown(SDL_SCANCODE_SPACE) && !jojo::g_inputSystem.GetPreviousKeyDown(SDL_SCANCODE_SPACE))
 		{

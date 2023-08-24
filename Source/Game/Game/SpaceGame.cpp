@@ -10,6 +10,10 @@
 #include "Input/InputSystem.h"
 #include "Renderer/Renderer.h"
 
+
+
+
+
 bool SpaceGame::Initalize()
 {
 
@@ -43,6 +47,12 @@ bool SpaceGame::Initalize()
 	m_scene->Load("scene.json");
 	m_scene->Initialize();
 
+
+	//m_scene->GetActorByName("Title")->active = true; 
+
+	//EVENT_SUBSCRIBE("Add Points", SpaceGame::addPoints);
+	//EVENT_SUBSCRIBE("OnPlayerDead", SpaceGame::OnPlayerDead);
+
     return true;
 }
 
@@ -72,26 +82,12 @@ void SpaceGame::Update(float dt)
 		m_scene->RemoveAll();
 	{
 		//creatplayer
-		std::unique_ptr<Player> player = std::make_unique<Player>(Player::Player(200, jojo::Pi, jojo::Transform({ 400,300 }, 0, 10)));//---------__----
-		player->health = 100;
-		player->tag = "Player";
-		player->m_game = this;
-		player->active = true;
-		//create components
-		auto component = CREATE_CLASS(Sprite);// jojo::Factory::Instance().Create<jojo::Sprite>("Sprite"); //std::make_unique<jojo::Sprite>();
-		component->m_texture = GET_RESOURCE(jojo::Texture, "newship.png", jojo::g_renderer);
-		player->AddComponent(std::move(component));
-		//
-		auto physicsComponent = CREATE_CLASS(EnginePhysicsComponent);// std::make_unique<jojo::EnginePhysicsComponent>();
-		physicsComponent->m_dampening = 1;
-		player->AddComponent(std::move(physicsComponent));
-
-		auto collisionComponent = CREATE_CLASS(CircleCollisionComponent);// std::make_unique<jojo::CircleCollisionComponent>();
-		collisionComponent->m_radius = 10.0f;
-		player->AddComponent(std::move(collisionComponent));
-
+		auto player = INSTANTIATE(Player, "Player");
+		player->transform = jojo::Transform{ { 400, 300 }, 0, 10 };
 		player->Initialize();
+		player->m_game = this;
 		m_scene->Add(std::move(player));
+
 	}
 	m_state = eState::Game;
 		break;
@@ -99,47 +95,28 @@ void SpaceGame::Update(float dt)
 		m_spawnTimer += dt;
 		if (m_spawnTimer >= m_spawnTime)
 		{
-			m_spawnTimer = 0;
-			std::unique_ptr<Enemy> enemy = std::make_unique<Enemy>(Enemy::Enemy(jojo::randomf(75.0f, 150.0f), jojo::Pi, jojo::Transform({ 400 + jojo::random(1,300),300 + jojo::random(1,300)}, 0, 8)));
-			enemy->tag = "Enemy";
-			enemy->m_game = this;
-			enemy->active = true;
-			//
-			std::unique_ptr<jojo::Sprite> component = std::make_unique<jojo::Sprite>();
-			component->m_texture = GET_RESOURCE(jojo::Texture, "enemy.PNG", jojo::g_renderer);
-			enemy->AddComponent(std::move(component));
-
-			auto collisionComponent = std::make_unique<jojo::CircleCollisionComponent>();
-			collisionComponent->m_radius = 6.0f;
-			enemy->AddComponent(std::move(collisionComponent));
-
+			auto enemy = INSTANTIATE(Enemy, "Enemy");
+			enemy->transform = jojo::Transform{ { jojo::random(100,800), jojo::random(100,600)}, 0, 8};
 			enemy->Initialize();
-
+			enemy->m_game = this;
 			m_scene->Add(std::move(enemy));
+			m_spawnTimer = 0;
 
 		}
 		m_spawnAsteroidTimer += dt;
 		if (m_spawnAsteroidTimer >= m_spawnTimeAsteroid)
 		{
+			auto asteroid = INSTANTIATE(Asteroid, "Asteroid");
+			asteroid->transform = jojo::Transform{ { jojo::random(100,800), 50 }, 0, 11 };
+			asteroid->Initialize();
+			asteroid->m_game = this;
+			m_scene->Add(std::move(asteroid));
+
 			m_spawnAsteroidTimer = 0;
 			m_spawnTimeAsteroid = jojo::randomf(5.0f, 10.0f);
-			std::unique_ptr<Asteroid> asteroid = std::make_unique<Asteroid>(jojo::randomf(20.0f, 150.0f), (float)1, jojo::Transform{{jojo::random(10, 700), 0}, 0, 12});
-			asteroid->tag = "Enemy";
-			asteroid->m_game = this;
-			asteroid->active = true;
-			//
-			std::unique_ptr<jojo::Sprite> component = std::make_unique<jojo::Sprite>();
-			component->m_texture = GET_RESOURCE(jojo::Texture, "asteroid.png", jojo::g_renderer);
-			asteroid->AddComponent(std::move(component));
-
-			auto collisionComponent = std::make_unique<jojo::CircleCollisionComponent>();
-			collisionComponent->m_radius = 13.0f;
-			asteroid->AddComponent(std::move(collisionComponent));
-
-			asteroid->Initialize();
-
-			m_scene->Add(std::move(asteroid));
 		}
+
+		if (m_scene->GetActorByName("Player")->health <= 0)	this->SetState(SpaceGame::eState::PlayerDeadStart);
 
 		break;
 	case eState::PlayerDeadStart:
@@ -198,7 +175,16 @@ void SpaceGame::Draw(jojo::Renderer& renderer)
 		m_scene->Draw(renderer);//draw this first - possible fix
 		m_scoreText->Draw(renderer, 290, 500);
 	}
+}
 
-	
 
+void SpaceGame::addPoints(const jojo::Event& event)
+{
+	m_score += std::get<int>(event.data);
+}
+
+void SpaceGame::OnPlayerDead(const jojo::Event& event)
+{
+	m_lives--;
+	m_state = eState::PlayerDeadStart;
 }

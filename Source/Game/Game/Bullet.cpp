@@ -19,7 +19,7 @@ namespace jojo
 			if (renderComponent)
 			{
 				float scale = transform.scale;
-				collisionComponent->m_radius = GetComponent<jojo::RenderComponent>()->GetRadius() / scale;
+				collisionComponent->radius = GetComponent<jojo::RenderComponent>()->GetRadius() / scale;
 			}
 		}
 
@@ -39,8 +39,9 @@ namespace jojo
 
 	void Bullet::OnCollision(Actor* other)
 	{
-		if (other->tag != tag)
+ 		if (other->tag != tag)
 		{
+			lifespan = 0;
 			m_destroyed = true;
 		}
 	}

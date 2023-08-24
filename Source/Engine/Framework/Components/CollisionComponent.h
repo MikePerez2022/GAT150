@@ -7,10 +7,10 @@ namespace jojo
 	class CollisionComponent : public Component
 	{
 	public:
-		virtual bool CheckCollision(CollisionComponent* collision) = 0;
+		virtual bool CheckCollision(CollisionComponent* collision) = 0 { return true; };
 
 	public:
-		float m_radius = 0;
+		float radius = 0;
 
 	};
 

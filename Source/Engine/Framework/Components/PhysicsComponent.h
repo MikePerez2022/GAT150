@@ -13,6 +13,6 @@ namespace jojo
 		vec2 m_velocity;
 		vec2 m_acceleration;
 		float m_mass = 1.0f;
-		float m_dampening = 0.0f;
+		float damping = 0.0f;
 	};
 }

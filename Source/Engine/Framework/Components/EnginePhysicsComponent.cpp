@@ -8,7 +8,7 @@ namespace jojo
 	void jojo::EnginePhysicsComponent::Update(float dt)
 	{
 		m_owner->transform.position += m_velocity * dt;
-		m_velocity += std::pow(1.0f - m_dampening, dt);
+		m_velocity += std::pow(1.0f - damping, dt);
 	}
 
 	void jojo::EnginePhysicsComponent::ApplyForce(const vec2& force)
@@ -18,7 +18,7 @@ namespace jojo
 
 	void EnginePhysicsComponent::Read(const json_t& value)
 	{
-		//
+		READ_DATA(value, damping);
 	}
 }
 

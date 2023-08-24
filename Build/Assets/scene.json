@@ -1,5 +1,5 @@
 {
-	"actors":[
+	"actors": [
 		{
 			"type": "Actor",
 			"name": "Background",
@@ -9,7 +9,7 @@
 				"scale": 28.5,
 				"rotation": 0
 			},
-			"speed" :  200,
+			"speed": 200,
 			"components": [
 				{
 					"type": "Sprite",
@@ -23,13 +23,13 @@
 			"persistent": true,
 			"prototype": true,
 			"lifespan": 2,
-			"tag": "player",
+			"tag": "Player",
 			"transform": {
 				"position": [ 400, 300 ],
 				"scale": 5,
 				"rotation": 0
 			},
-			"speed": 100,
+			"speed": 300,
 			"components": [
 				{
 					"type": "Sprite",
@@ -37,6 +37,106 @@
 				},
 				{
 					"type": "CircleCollisionComponent"
+				}
+			]
+		},
+		{
+			"type": "Player",
+			"name": "Player",
+			"prototype": true,
+			"tag": "Player",
+			"transform": {
+				"position": [ 400, 300 ],
+				"scale": 10,
+				"rotation": 0
+			},
+			"speed": 200,
+			"turnRate": 3.0,
+			"health": 100,
+			"components": [
+				{
+					"type": "Sprite",
+					"texturename": "newship.png"
+				},
+				{
+					"type": "EnginePhysicsComponent",
+					"damping": 1
+				},
+				{
+					"type": "CircleCollisionComponent",
+					"radius": 10
+				}
+			]
+		},
+		{
+			"type": "Enemy",
+			"name": "Enemy",
+			"prototype": true,
+			"tag": "Enemy",
+			"transform": {
+				"position": [ 400, 300 ],
+				"scale": 5,
+				"rotation": 0
+			},
+			"speed": 100,
+			"turnRate": 0.5,
+			"components": [
+				{
+					"type": "Sprite",
+					"texturename": "enemy.png"
+				},
+				{
+					"type": "EnginePhysicsComponent",
+					"damping": 1
+				},
+				{
+					"type": "CircleCollisionComponent",
+					"radius": 3
+				}
+			]
+		},
+		{
+			"type": "Asteroid",
+			"name": "Asteroid",
+			"prototype": true,
+			"tag": "Enemy",
+			"transform": {
+				"position": [ 400, 300 ],
+				"scale": 12,
+				"rotation": 0
+			},
+			"speed": 100,
+			"turnRate": 0.5,
+			"components": [
+				{
+					"type": "Sprite",
+					"texturename": "asteroid.png"
+				},
+				{
+					"type": "EnginePhysicsComponent",
+					"damping": 1
+				},
+				{
+					"type": "CircleCollisionComponent",
+					"radius": 6
+				}
+			]
+		},
+		{
+			"type": "Actor",
+			"name": "Title",
+			"persistent": true,
+			"transform": {
+				"position": [ 400, 300 ],
+				"scale": 2,
+				"rotation": 0
+			},
+			"components": [
+				{
+					"type": "TextRenderComponent",
+					"fontName": "arcadeclassic.ttf",
+					"fontSize": 24,
+					"text": "ASTEROIDZ"
 				}
 			]
 		}

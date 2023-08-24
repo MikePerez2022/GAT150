@@ -1,22 +1,21 @@
 #pragma once
 #include "..\Engine\Framework\Actor.h"
 
-class Asteroid : public jojo::Actor
+namespace jojo
 {
-public:
-	Asteroid() = default;
-	Asteroid(float speed, float turnRate, const jojo::Transform& transform) :
-		Actor{ transform},
-		m_speed{ speed },
-		m_turnRate{ turnRate }
-	{}
+	class Asteroid : public jojo::Actor
+	{
+	public:
+		CLASS_DECLARATION(Asteroid);
 
-	virtual bool Initalize();
+		virtual bool Initalize();
+		//void OnDestroy() override;
+		void Update(float dt) override;
+		void OnCollision(Actor* other) override;
 
-	void Update(float dt) override;
-	void OnCollision(Actor* other) override;
+	protected:
+		float speed = 0;
+		float turnRate = 0;
+	};
+}
 
-protected:
-	float m_speed = 0;
-	float m_turnRate = 0;
-};

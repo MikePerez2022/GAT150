@@ -1,28 +1,25 @@
 #pragma once
 #include "..\Engine\Framework\Actor.h"
 
-class Enemy : public jojo::Actor
+namespace jojo
 {
-public:
-	Enemy() = default;
-	Enemy(float speed, float turnRate, const jojo::Transform& transform) :
-		Actor{ transform },
-		m_speed{ speed },
-		m_turnRate{ turnRate }
+	class Enemy : public Actor
 	{
-		m_fireRate = 2.0f;
-		m_fireTimer = m_fireRate;	
-	}
+	public:
+		CLASS_DECLARATION(Enemy);
 
-	virtual bool Initalize();
+		virtual bool Initalize();
+		void OnDestroy() override { m_destroyed = true; };
+		void Update(float dt) override;
+		void OnCollision(Actor* other) override;
 
-	void Update(float dt) override;
-	void OnCollision(Actor* other) override;
+	protected:
+		float speed = 0;
+		float turnRate = 0;
 
-protected:
-	float m_speed = 0;
-	float m_turnRate = 0;
+		float fireRate = 0;
+		float fireTimer = 0;
 
-	float m_fireRate = 0;
-	float m_fireTimer = 0;
-};
+		//jojo::PhysicsComponent* m_physicsComponent = nullptr;
+	};
+}

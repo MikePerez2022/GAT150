@@ -1,29 +1,24 @@
 #pragma once
 #include "..\Engine\Framework\Actor.h"
-#include "Framework/Components/PhysicsComponent.h"
-
-class Player : public jojo::Actor
+namespace jojo
 {
-public:
-	Player() = default;
-	Player(float speed, float turnRate, const jojo::Transform& transform) :
-		Actor{ transform },
-		m_speed{ speed },
-		m_turnRate{ turnRate } 
+	class Player : public jojo::Actor
 	{
-		lifespan = -1.0f;
-	}
+	public:
+		CLASS_DECLARATION(Player);
 
-	bool Initialize() override;
-	void Update(float dt) override;
-	void OnCollision(Actor* other) override;
+		bool Initialize() override;
+		void Update(float dt) override;
+		void OnCollision(Actor* other) override;
+		//void OnDestroy() override;
 
-protected:
-	float m_speed = 0;
-	float m_turnRate = 0;
+	protected:
+		float speed = 0;
+		float turnRate = 0;
 
-	float m_coolDown = 1.5f;
-	float m_coolDownTimer = 0;
+		float m_coolDown = 1.5f;
+		float m_coolDownTimer = 0;
 
-	jojo::PhysicsComponent* m_physicsComponent = nullptr;
-};
+		//jojo::PhysicsComponent* m_physicsComponent = nullptr;
+	};
+}
