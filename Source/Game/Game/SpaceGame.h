@@ -3,7 +3,7 @@
 #include "Renderer/Text.h"
 #include "Core/Random.h"
 
-class SpaceGame : public jojo::Game
+class SpaceGame : public jojo::Game, jojo::IEventListener
 {
 public:
 	enum class eState

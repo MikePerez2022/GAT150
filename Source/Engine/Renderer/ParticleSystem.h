@@ -4,7 +4,7 @@
 
 namespace jojo
 {
-	class ParticleSystem
+	class ParticleSystem : public Singleton<ParticleSystem>
 	{
 	public:
 		ParticleSystem() = default;
