@@ -34,17 +34,17 @@ bool SpaceGame::Initalize()
 	
 
 	//Load Audio
-	jojo::g_audioSystem.AddAudio("laser", "laser.wav");
-	jojo::g_audioSystem.AddAudio("hit", "hit.wav");
-	jojo::g_audioSystem.AddAudio("gameover", "GameOver.wav");
-	jojo::g_audioSystem.AddAudio("gameplay", "gameplay.wav");
-	jojo::g_audioSystem.AddAudio("intro", "Intro.wav");
-	jojo::g_audioSystem.AddAudio("over", "over.wav");
+	jojo::g_audioSystem.AddAudio("laser", "Audio/laser.wav");
+	jojo::g_audioSystem.AddAudio("hit", "Audio/hit.wav");
+	jojo::g_audioSystem.AddAudio("gameover", "Audio/GameOver.wav");
+	jojo::g_audioSystem.AddAudio("gameplay", "Audio/gameplay.wav");
+	jojo::g_audioSystem.AddAudio("intro", "Audio/Intro.wav");
+	jojo::g_audioSystem.AddAudio("over", "Audio/over.wav");
 
 	//scene
 	m_scene = std::make_unique<jojo::Scene>();
 
-	m_scene->Load("scene.json");
+	m_scene->Load("Scenes/spacescene.json");
 	m_scene->Initialize();
 
 

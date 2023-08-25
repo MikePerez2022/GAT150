@@ -4,6 +4,7 @@
 #include "Renderer/Model.h"
 #include "Audio/AudioSystem.h"
 #include "Components/Component.h"
+#include "Components/Box2DPhysicsComponent.h"
 #include <memory>
 
 namespace jojo
@@ -32,8 +33,10 @@ namespace jojo
 		T* GetComponent();
 
 
-		float GetRadius() { return 5.0f; }
 		virtual void OnCollision(Actor* other) {}
+
+		virtual void OnCollisionEnter(Actor* other) {}
+		virtual void OnCollisionExit(Actor* other) {}
 		
 		class Scene* m_scene = nullptr;
 		friend class Scene;

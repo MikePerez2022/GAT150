@@ -1,6 +1,7 @@
 #pragma once
 #include "Framework/Singleton.h"
 #include "Core/Math/Vector2.h"
+#include "ContactListener.h"
 #include "../ThirdParty/box2d/include/box2d/box2d.h"
 #include <memory>
 
@@ -51,5 +52,7 @@ namespace jojo
 	private:
 		std::unique_ptr<b2World> m_world;
 		float m_pixelsPerUnit = 48.0f;
+
+		std::unique_ptr<ContactListener> m_contactListener;
 	};
 }

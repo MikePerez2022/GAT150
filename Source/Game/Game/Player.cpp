@@ -54,10 +54,10 @@ namespace jojo
 
 		jojo::vec2 forward = jojo::vec2{ 0,-1 }.Rotate(transform.rotation);
 
-		auto physicsComponent = GetComponent<jojo::PhysicsComponent>();
-		physicsComponent->ApplyForce(forward * speed * thrust * dt);
+		//auto physicsComponent = GetComponent<jojo::PhysicsComponent>();
+		//physicsComponent->ApplyForce(forward * speed * thrust * dt);
 
-		//m_physicsComponent->ApplyForce(forward * m_speed * thrust * dt);
+		//m_physicsComponent->ApplyForce(forward * speed * thrust * dt);
 		//m_physicsComponent->ApplyTorque(5);
 
 
@@ -69,8 +69,8 @@ namespace jojo
 		m_coolDownTimer += dt;
 		if (m_coolDownTimer >= m_coolDown && jojo::g_inputSystem.GetKeyDown(SDL_SCANCODE_SPACE) && !jojo::g_inputSystem.GetPreviousKeyDown(SDL_SCANCODE_SPACE))
 		{
-			auto bullet = INSTANTIATE(Bullet, "Rocket");
-			bullet->transform = { transform.position, transform.rotation - jojo::DegreesToRadians(5), 5 };
+ 			auto bullet = INSTANTIATE(Bullet, "Rocket");
+			bullet->transform = { transform.position + forward * 30, transform.rotation - jojo::DegreesToRadians(5), 5 };
 			bullet->Initalize();
 			bullet->active = true;
 			m_scene->Add(std::move(bullet));

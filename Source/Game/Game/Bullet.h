@@ -15,5 +15,6 @@ namespace jojo
 
 	protected:
 		float speed = 0;
+		jojo::PhysicsComponent* m_physicsComponent;
 	};
 }

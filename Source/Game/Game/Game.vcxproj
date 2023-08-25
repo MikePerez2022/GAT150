@@ -199,7 +199,8 @@
     <ClInclude Include="SpaceGame.h" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="..\..\..\Build\Assets\scene.json" />
+    <None Include="..\..\..\Build\Assets\spacescene.json" />
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -47,8 +47,9 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="..\..\..\Build\Assets\scene.json">
+    <None Include="..\..\..\Build\Assets\spacescene.json">
       <Filter>Assets</Filter>
-    </Text>
+    </None>
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
 </Project>

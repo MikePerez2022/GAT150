@@ -19,6 +19,9 @@ namespace jojo
 		virtual void ApplyForce(const vec2& force) override;
 		virtual void ApplyTorque(float torque);
 
+
+		virtual void SetVelocity(const vec2& velocity);
+
 		friend class Box2DCollisionComponent;
 
 	private:

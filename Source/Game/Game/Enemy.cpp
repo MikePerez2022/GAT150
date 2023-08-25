@@ -66,16 +66,6 @@ namespace jojo
 		transform.position.x = jojo::Wrap(transform.position.x, (float)jojo::g_renderer.GetWidth());
 		transform.position.y = jojo::Wrap(transform.position.y, (float)jojo::g_renderer.GetHeight());
 
-		/*
-		if (m_fireTimer <= 0) {
-			jojo::Transform transform{transform.position, 0, transform.scale};
-			std::unique_ptr<Bullet> bullet = std::make_unique<Bullet>(Bullet{ 200, transform});
-			bullet->tag = "Enemy";
-			m_scene->Add(std::move(bullet));
-
-			m_fireTimer = 2.0f;
-		}
-		*/
 	}
 
 	void Enemy::OnCollision(Actor* other)

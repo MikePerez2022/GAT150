@@ -20,7 +20,6 @@
 		{
 			"type": "Bullet",
 			"name": "Rocket",
-			"persistent": true,
 			"prototype": true,
 			"lifespan": 2,
 			"tag": "Player",
@@ -36,7 +35,16 @@
 					"texturename": "bullet.png"
 				},
 				{
-					"type": "CircleCollisionComponent"
+					"type": "Box2DPhysicsComponent",
+					"damping": 0,
+					"angularDamping": 2,
+					"gravityScale": 0
+				},
+				{
+					"type": "Box2DCollisionComponent",
+					"size": [ 32, 32 ],
+					"isTrigger": false,
+					"constrainAngle": true
 				}
 			]
 		},

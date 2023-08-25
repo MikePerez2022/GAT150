@@ -54,7 +54,7 @@ int main(int argc, char* argv[])
 
 	jojo::MemoryTracker::Initialize();
 	jojo::seedRandom((unsigned int)time(nullptr));
-	jojo::setFilePath("assets");
+	jojo::setFilePath("Assets/SpaceGame");
 
 	jojo::g_renderer.Initalize();
 	jojo::g_renderer.CreateWindow("CSC196", 800, 600); 

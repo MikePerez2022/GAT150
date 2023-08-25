@@ -2,6 +2,7 @@
 #include "Renderer/Renderer.h"
 #include "Framework/Components/CircleCollisionComponent.h"
 #include "Framework/Components/RenderComponent.h"
+#include "Framework/Components/PhysicsComponent.h"
 
 namespace jojo
 {
@@ -11,16 +12,13 @@ namespace jojo
 	{
 		Actor::Initialize();
 
+		m_physicsComponent = GetComponent<jojo::PhysicsComponent>();
+
 		auto collisionComponent = GetComponent<jojo::CollisionComponent>();
 
 		if (collisionComponent)
 		{
-			auto renderComponent = GetComponent<jojo::RenderComponent>();
-			if (renderComponent)
-			{
-				float scale = transform.scale;
-				collisionComponent->radius = GetComponent<jojo::RenderComponent>()->GetRadius() / scale;
-			}
+
 		}
 
 		return true;
@@ -31,8 +29,15 @@ namespace jojo
 		Actor::Update(dt);
 
 		jojo::vec2 forward = jojo::vec2{ 0,-1 }.Rotate(transform.rotation);
-		transform.position += forward * speed * jojo::g_time.GetDeltaTime();
+
+		m_physicsComponent->SetVelocity(forward * speed * jojo::g_time.GetDeltaTime());
+
+
+		transform.position += m_physicsComponent->m_velocity;
+
+
 		transform.position.x = jojo::Wrap(transform.position.x, (float)jojo::g_renderer.GetWidth());
+
 
 	}
 

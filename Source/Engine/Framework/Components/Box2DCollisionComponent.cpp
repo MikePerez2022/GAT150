@@ -1,5 +1,6 @@
 #include "Box2DCollisionComponent.h"
 #include "Box2DPhysicsComponent.h"
+#include "SpriteComponent.h"
 #include "Framework/Actor.h"
 
 namespace jojo
@@ -11,6 +12,15 @@ namespace jojo
 		auto component = m_owner->GetComponent<Box2DPhysicsComponent>();
 		if (component)
 		{
+			if (data.size.x == 0 && data.size.y == 0)
+			{
+				auto spriteComponet = m_owner->GetComponent<Sprite>();
+				if (spriteComponet)
+				{
+					data.size = vec2{ spriteComponet->source.w, spriteComponet->source.h };
+				}
+			}
+
 			data.size = data.size * scaleOffset * m_owner->transform.scale;
 
 			if (component->m_body->GetType() == b2_staticBody)
@@ -32,7 +42,7 @@ namespace jojo
 
 	bool Box2DCollisionComponent::CheckCollision(CollisionComponent* collision)
 	{
-		return false;
+		return true;
 	}
 
 	void Box2DCollisionComponent::Read(const json_t& value)

@@ -1,5 +1,6 @@
 #pragma once
 #include "..\Engine\Framework\Actor.h"
+
 namespace jojo
 {
 	class Player : public jojo::Actor
@@ -19,6 +20,6 @@ namespace jojo
 		float m_coolDown = 1.5f;
 		float m_coolDownTimer = 0;
 
-		//jojo::PhysicsComponent* m_physicsComponent = nullptr;
+		//PhysicsComponent* m_physicsComponent = nullptr;
 	};
 }
