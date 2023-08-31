@@ -28,7 +28,7 @@ namespace jojo
 		bool Initialize() override;
 		void Update(float dt) override;
 
-		void SetSequence(const std::string& name);
+		void SetSequence(const std::string& name, bool update = false);
 		void UpdateSource();
 
 	public:

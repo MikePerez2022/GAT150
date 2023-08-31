@@ -9,23 +9,23 @@ namespace jojo
 
 	void EventManager::Subscribe(Event::id_t id, IEventListener* listener, eventFunction function)
 	{
-		/*EventDispacher dispatcher;
+		EventDispacher dispatcher;
 
 		dispatcher.listener = listener;
 		dispatcher.function = function;
 
 		INFO_LOG("Event subscribed: " << id);
 
-		m_dispachers[id].push_back(dispatcher);*/
+		m_dispachers[id].push_back(dispatcher);
 	}
 
 	void EventManager::Unsubscribe(Event::id_t id, IEventListener* listener)
 	{
-		// get list of dispatchers for event
-		//auto& dispatchers = m_dispatchers[id];
 
-		// remove dipatcher with matching listener
-		/*for (auto iter = dispatchers.begin(); iter != dispatchers.end(); iter++)
+		auto& dispatchers = m_dispachers[id];
+
+
+		for (auto iter = dispatchers.begin(); iter != dispatchers.end(); iter++)
 		{
 			if (iter->listener == listener)
 			{
@@ -34,12 +34,12 @@ namespace jojo
 				dispatchers.erase(iter);
 				break;
 			}
-		}*/
+		}
 	}
 
 	void EventManager::DispatchEvent(Event::id_t id, Event::data_t data, void* sender, float time)
 	{
-		/*Event event{ id, data };
+		Event event{ id, data };
 
 		if (m_dispachers.find(id) != m_dispachers.end())
 		{
@@ -47,8 +47,8 @@ namespace jojo
 
 			for (auto& dispatcher : dispatchers)
 			{
-				dispatcher.function(event); 
+				dispatcher.function();
 			}
-		}*/
+		}
 	}
 }

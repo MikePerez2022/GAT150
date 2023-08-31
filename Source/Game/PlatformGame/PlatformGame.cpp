@@ -20,13 +20,11 @@ bool PlatformGame::Initalize()
 	m_scene = std::make_unique<jojo::Scene>();
 
 	m_scene->Load("Scenes/platformscene.json");
+	//m_scene->Load("Scenes/tilemap.json");
 	m_scene->Initialize();
 
 
 	m_scene->GetActorByName("Title")->active = true;
-
-	//EVENT_SUBSCRIBE("Add Points", SpaceGame::addPoints);
-	//EVENT_SUBSCRIBE("OnPlayerDead", SpaceGame::OnPlayerDead);
 
 	return true;
 }
@@ -42,6 +40,17 @@ void PlatformGame::Update(float dt)
 	switch (m_state)
 	{
 	case PlatformGame::eState::Title:
+
+	{
+		
+		//auto actor = INSTANTIATE(Actor, "Crate");
+		//actor->transform.position = { jojo::randomf(jojo::g_renderer.GetWidth(), 100.0f) };
+		//actor->Initialize();
+		//m_scene->Add(std::move(actor));
+
+	}
+		
+
 		if (jojo::g_inputSystem.GetKeyDown(SDL_SCANCODE_X) && !jojo::g_inputSystem.GetPreviousKeyDown(SDL_SCANCODE_X))
 		{
 			m_state = eState::StartGame;

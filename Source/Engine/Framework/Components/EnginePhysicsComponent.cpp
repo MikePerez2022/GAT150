@@ -7,13 +7,13 @@ namespace jojo
 
 	void jojo::EnginePhysicsComponent::Update(float dt)
 	{
-		m_owner->transform.position += m_velocity * dt;
-		m_velocity += std::pow(1.0f - damping, dt);
+		m_owner->transform.position += velocity * dt;
+		velocity += std::pow(1.0f - damping, dt);
 	}
 
 	void jojo::EnginePhysicsComponent::ApplyForce(const vec2& force)
 	{
-		m_velocity += force;
+		velocity += force;
 	}
 
 	void EnginePhysicsComponent::ApplyTorque(float torque)

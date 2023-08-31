@@ -9,7 +9,8 @@ namespace jojo
 
 	bool Sprite::Initialize()
 	{
-		if (!texturename.empty()) m_texture = GET_RESOURCE(Texture,texturename, g_renderer);
+		if (!texturename.empty()) m_texture = GET_RESOURCE(Texture, texturename, g_renderer);
+		else m_texture = nullptr;
 		if (source.w == 0 && source.h == 0)
 		{
 			if (m_texture)
@@ -31,12 +32,14 @@ namespace jojo
 
 	void jojo::Sprite::Draw(Renderer& renderer)
 	{
-		renderer.DrawTexture(m_texture.get(), source, m_owner->transform);
+		renderer.DrawTexture(m_texture.get(), source, m_owner->transform, origin, flipH);
 	}
 
 	void Sprite::Read(const rapidjson::Value& value)
 	{
 		READ_DATA(value, texturename);
 		READ_DATA(value, source);
+		READ_DATA(value, flipH);
+		READ_DATA(value, origin);
 	}
 }

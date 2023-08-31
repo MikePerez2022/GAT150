@@ -33,7 +33,7 @@ namespace jojo
 		m_physicsComponent->SetVelocity(forward * speed * jojo::g_time.GetDeltaTime());
 
 
-		transform.position += m_physicsComponent->m_velocity;
+		transform.position += m_physicsComponent->velocity;
 
 
 		transform.position.x = jojo::Wrap(transform.position.x, (float)jojo::g_renderer.GetWidth());

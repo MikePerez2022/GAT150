@@ -3,10 +3,11 @@
 
 namespace jojo
 {
-	CLASS_DEFINITION(Box2DPhysicsComponent)
+	CLASS_DEFINITION(Box2DPhysicsComponent);
 
-		bool Box2DPhysicsComponent::Initialize()
+	bool Box2DPhysicsComponent::Initialize()
 	{
+
 		m_body = PhysicsSystem::Instance().CreateBody(m_owner->transform.position, m_owner->transform.rotation, data);
 		m_body->SetGravityScale(data.gravityScale);
 		m_body->SetLinearDamping(data.damping);
@@ -26,10 +27,12 @@ namespace jojo
 
 	void Box2DPhysicsComponent::Update(float dt)
 	{
+
 		Vector2 position = B2VEC2_TO_VEC2(m_body->GetPosition());
 		m_owner->transform.position = PhysicsSystem::Instance().WorldToScreen(position);
 		m_owner->transform.rotation = m_body->GetAngle();
-		m_velocity += B2VEC2_TO_VEC2(m_body->GetLinearVelocity()); // += -- works
+		velocity = B2VEC2_TO_VEC2(m_body->GetLinearVelocity());
+
 	}
 
 	void Box2DPhysicsComponent::ApplyForce(const vec2& force)

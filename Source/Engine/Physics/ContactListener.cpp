@@ -1,6 +1,5 @@
 #include "ContactListener.h"
 #include "Framework/Actor.h"
-#include "Framework/Components/Box2DCollisionComponent.h"
 
 namespace jojo
 {

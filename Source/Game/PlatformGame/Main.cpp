@@ -22,13 +22,13 @@ using namespace std;
 
 int main(int argc, char* argv[])
 {
-	//jojo::Factory::Instance().Register<jojo::Sprite>("Sprite");
+	jojo::Factory::Instance().Register<jojo::Sprite>("Sprite");
 
 	INFO_LOG("Initalize Engine");
 
 	jojo::MemoryTracker::Initialize();
 	jojo::seedRandom((unsigned int)time(nullptr));
-	jojo::setFilePath("Assets");// /Platform 
+	jojo::setFilePath("Assets/Platform");// /Platform 
 
 	jojo::g_renderer.Initalize();
 	jojo::g_renderer.CreateWindow("CSC196", 800, 600);
@@ -53,7 +53,8 @@ int main(int argc, char* argv[])
 		}
 		jojo::g_particleSystem.Update(jojo::g_time.GetDeltaTime());
 		jojo::ParticleSystem::Instance().Update(jojo::g_time.GetDeltaTime());
-		//jojo::g_audioSystem.Update();
+		jojo::PhysicsSystem::Instance().Update(jojo::g_time.GetDeltaTime());
+		jojo::g_audioSystem.Update();
 
 
 		game->Update(jojo::g_time.GetDeltaTime());

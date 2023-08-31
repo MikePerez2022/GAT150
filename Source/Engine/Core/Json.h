@@ -4,6 +4,8 @@
 #include "Math/Color.h"
 #include "Core/Math/Rect.h"
 #include <string>
+#include <vector>
+
 
 #define READ_NAME_DATA(value, name, data) jojo::Json::Read(value, name, data);
 #define READ_NAME_DATA_REQUIRED(value, name, data) jojo::Json::Read(value, name, data, true);
@@ -27,6 +29,8 @@ namespace jojo
 		static bool Read(const rapidjson::Value& value, const std::string& name, vec2& data, bool required = false);
 		static bool Read(const rapidjson::Value& value, const std::string& name, Color& data, bool required = false);
 		static bool Read(const rapidjson::Value& value, const std::string& name, Rect& data, bool required = false);
+		static bool Read(const rapidjson::Value& value, const std::string& name, std::vector<std::string>& data, bool required = false);
+		static bool Read(const rapidjson::Value& value, const std::string& name, std::vector<int>& data, bool required = false);
 	};
 
 	using json_t = rapidjson::Value;

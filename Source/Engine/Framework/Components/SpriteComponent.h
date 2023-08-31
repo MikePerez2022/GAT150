@@ -14,10 +14,13 @@ namespace jojo
 
 		void Update(float dt) override;
 		void Draw(class Renderer& renderer) override;
-		virtual float GetRadius() { return m_texture->GetSize().Length() * 0.5f; }
+		//virtual float GetRadius() { return m_texture->GetSize().Length() * 0.5f; }
 
 	public:
 		Rect source;
+		bool flipH = false;
+		vec2 origin{ 0.5f, 0.5f };
+
 		std::string texturename;
 		res_t<Texture> m_texture;
 

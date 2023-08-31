@@ -40,6 +40,68 @@
 							"textureName": "Textures/coin.png"
 						}
 					]
+				},
+				{
+					"type": "Box2DPhysicsComponent",
+					"damping": 0,
+					"gravityScale": 1
+				},
+				{
+					"type": "Box2DCollisionComponent",
+					"restitution" :  1
+				}
+			]
+		},
+		{
+			"type": "Player",
+			"name": "Player",
+			"tag":  "Player",
+			"persistent": true,
+			"speed": 18,
+			"maxspeed" :  20,
+			"jump":  8,
+			"transform": {
+				"position": [ 460, 300 ],
+				"scale": 1.4,
+				"rotation": 0
+			},
+			"components": [
+				{
+					"type": "SpriteAnim",
+					"defaultSequenceName": "idle",
+					"source": [0, 0, 16, 16],
+					"origin": [0.5, 1],
+					"sequences": [
+						{
+							"name": "idle",
+							"fps": 12,
+							"numColumns": 7,
+							"numRows": 11,
+							"startFrame": 1,
+							"endFrame": 4,
+							"textureName": "Textures/player.png"
+						},
+						{
+							"name": "run",
+							"fps": 12,
+							"numColumns": 7,
+							"numRows": 11,
+							"startFrame": 9,
+							"endFrame": 14,
+							"textureName": "Textures/player.png"
+						}
+					]
+				},
+				{
+					"type": "Box2DPhysicsComponent",
+					"damping": 0,
+					"gravityScale": 1,
+					"isDynamic": true,
+					"constrainAngle": true
+				},
+				{
+					"type": "Box2DCollisionComponent",
+					"restitution": 0
 				}
 			]
 		},
@@ -55,11 +117,58 @@
 			"components": [
 				{
 					"type": "TextRenderComponent",
-					"fontName": "arcadeclassic.ttf",
+					"fontName": "Fonts/arcadeclassic.ttf",
 					"fontSize": 24,
-					"text": "Darker Souls"
+					"text": "Darker Souls",
+					"color": [ 255, 20, 10, 255 ]
+				}
+			]
+		},
+		{
+			"type": "Actor",
+			"name": "Ground",
+			"tag": "Ground",
+			"transform": {
+				"position": [
+					400,
+					520
+				]
+			},
+			"components": [
+				{
+					"type": "Box2DPhysicsComponent",
+					"isDynamic": false
+				},
+				{
+					"type": "Box2DCollisionComponent",
+					"size": [ 600, 20 ]
+				}
+			]
+		},
+		{
+			"type": "Actor",
+			"name": "Crate",
+			"tag": "Ground",
+			"prototype": true,
+			"transform": {
+				"position": [ 500, 540 ],
+				"rotation": 0,
+				"scale": 1
+			},
+			"components": [
+				{
+					"type": "Sprite",
+					"texturename": "Textures/crate.png"
+				},
+				{
+					"type": "Box2DPhysicsComponent",
+					"isDynamic": true
+				},
+				{
+					"type": "Box2DCollisionComponent",
+					"size": [ 50, 50 ]
 				}
 			]
 		}
-	] 
+	]
 }

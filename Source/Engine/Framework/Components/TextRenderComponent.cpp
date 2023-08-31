@@ -16,8 +16,8 @@ namespace jojo
 
 	bool TextRenderComponent::Initialize()
 	{
-		if (!fontName.empty()) m_text = std::make_unique<jojo::Text>(GET_RESOURCE(jojo::Font, "ArcadeClassic.ttf", 24));
-				return true;
+		if (!fontName.empty()) m_text = std::make_unique<jojo::Text>(GET_RESOURCE(jojo::Font, "Fonts/ArcadeClassic.ttf", 24));
+		return true;
 	}
 	void TextRenderComponent::Update(float dt)
 	{

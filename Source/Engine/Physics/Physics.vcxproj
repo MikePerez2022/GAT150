@@ -155,7 +155,6 @@
     <ClInclude Include="PhysicsSystem.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Collision.cpp" />
     <ClCompile Include="ContactListener.cpp" />
     <ClCompile Include="PhysicsSystem.cpp" />
   </ItemGroup>

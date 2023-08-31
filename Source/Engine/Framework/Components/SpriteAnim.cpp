@@ -1,4 +1,4 @@
-#include "SpriteAnam.h"
+#include "SpriteAnim.h"
 #include "Framework/Resource/ResourceManager.h"
 #include "Renderer/Renderer.h"
 
@@ -10,7 +10,8 @@ namespace jojo
 	{
 		Sprite::Initialize();
 
-		SetSequence(defaultSequenceName);
+		SetSequence(defaultSequenceName, false);
+		//if() source.w  == 0 h == 0 // updatesource
 
 		UpdateSource();
 
@@ -19,7 +20,7 @@ namespace jojo
 
 	void jojo::SpriteAnim::Update(float dt)
 	{
-		frameTime += dt;
+		frameTime -= dt;
 		if (frameTime <= 0)
 		{
 			frameTime = 1.0f / m_sequence->fps;
@@ -34,7 +35,7 @@ namespace jojo
 		UpdateSource();
 	}
 
-	void SpriteAnim::SetSequence(const std::string& name)
+	void SpriteAnim::SetSequence(const std::string& name, bool update)
 	{
 		if (m_sequence && m_sequence->name == name) return;
 
@@ -44,6 +45,8 @@ namespace jojo
 			if(m_sequence->texture) m_texture = m_sequence->texture;
 			frame = m_sequence->startFrame;
 			frameTime = 1.0f / m_sequence->fps;
+
+			if(update) UpdateSource();
 		}
 	}
 

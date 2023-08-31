@@ -12,14 +12,16 @@ namespace jojo
 		auto component = m_owner->GetComponent<Box2DPhysicsComponent>();
 		if (component)
 		{
-			if (data.size.x == 0 && data.size.y == 0)
+			auto spriteComponet = m_owner->GetComponent<Sprite>();
+			if (spriteComponet)
 			{
-				auto spriteComponet = m_owner->GetComponent<Sprite>();
-				if (spriteComponet)
+				if (data.size.x == 0 && data.size.y == 0)
 				{
 					data.size = vec2{ spriteComponet->source.w, spriteComponet->source.h };
 				}
+				data.offset = spriteComponet->origin - vec2{0.5f, 0.5f};
 			}
+
 
 			data.size = data.size * scaleOffset * m_owner->transform.scale;
 
@@ -38,6 +40,8 @@ namespace jojo
 
 	void Box2DCollisionComponent::Update(float dt)
 	{
+
+
 	}
 
 	bool Box2DCollisionComponent::CheckCollision(CollisionComponent* collision)
@@ -50,7 +54,7 @@ namespace jojo
 		READ_NAME_DATA(value, "size", data.size);
 		READ_NAME_DATA(value, "density", data.density);
 		READ_NAME_DATA(value, "friction", data.friction);
-		READ_NAME_DATA(value, "resitution", data.restitution);
+		READ_NAME_DATA(value, "restitution", data.restitution);
 		READ_NAME_DATA(value, "isTrigger", data.isTrigger);
 
 		READ_DATA(value, scaleOffset);
