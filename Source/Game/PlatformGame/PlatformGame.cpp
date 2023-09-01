@@ -18,7 +18,7 @@ bool PlatformGame::Initalize()
 	jojo::g_audioSystem.AddAudio("GameOver", "Audio/GameOver.wav");
 	jojo::g_audioSystem.AddAudio("Collapse", "Audio/Collapse.wav");
 	jojo::g_audioSystem.AddAudio("Level", "Audio/Level.wav");
-
+	
 	//scene
 	m_scene = std::make_unique<jojo::Scene>();
 
@@ -72,7 +72,7 @@ void PlatformGame::Update(float dt)
 		m_scene->Add(std::move(actor));
 		}
 
-		if(jojo::g_inputSystem.GetKeyDown(SDL_SCANCODE_X) && !jojo::g_inputSystem.GetPreviousKeyDown(SDL_SCANCODE_X)) jojo::g_audioSystem.PlayOneShot("Collapse", false);
+		if(jojo::g_inputSystem.GetKeyDown(SDL_SCANCODE_W) && !jojo::g_inputSystem.GetPreviousKeyDown(SDL_SCANCODE_W)) jojo::g_audioSystem.PlayOneShot("Collapse", false);
 
 		if (jojo::g_inputSystem.GetKeyDown(SDL_SCANCODE_X) && !jojo::g_inputSystem.GetPreviousKeyDown(SDL_SCANCODE_X))
 		{

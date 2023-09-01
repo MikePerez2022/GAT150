@@ -16,9 +16,3 @@ INFO: Main.cpp(27) Initalize Engine
 INFO: Factory.h(85) Prototype Class Registered: coin
 INFO: Factory.h(85) Prototype Class Registered: tile01
 INFO: Factory.h(85) Prototype Class Registered: tile02
-INFO: Factory.h(85) Prototype Class Registered: Rock
-INFO: Factory.h(85) Prototype Class Registered: tile01
-INFO: Factory.h(85) Prototype Class Registered: tile02
-INFO: Factory.h(85) Prototype Class Registered: Rock
-INFO: Factory.h(85) Prototype Class Registered: tile01
-INFO: Factory.h(85) Prototype Class Registered: tile02
