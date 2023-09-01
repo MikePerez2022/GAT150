@@ -1,14 +1,14 @@
 {
 	"actors":[
 		{
-			"type":"Actor",
-			"name":"tile01",
-			"tag":"Ground",
-			"prototype":true,
-			"transform":{
+			"type": "Actor",
+			"name": "tile01",
+			"tag": "Ground",
+			"prototype": true,
+			"transform": {
 				"scale": 1.5
 			},
-			"components":[
+			"components": [
 				{
 					"type": "Sprite",
 					"texturename": "Textures/tiles.png",
@@ -20,11 +20,11 @@
 					]
 				},
 				{
-					"type":"Box2DPhysicsComponent",
-					"isDynamic":false
+					"type": "Box2DPhysicsComponent",
+					"isDynamic": false
 				},
 				{
-					"type":"Box2DCollisionComponent"
+					"type": "Box2DCollisionComponent"
 				}
 			]
 		},
@@ -59,7 +59,7 @@
 		},
 		{
 			"type":"Actor",
-			"name":"World",
+			"name":"Start_scene",
 			"transform":{
 				"position":[
 					32,
@@ -72,17 +72,17 @@
 					"numColumns": 13,
 					"numRows": 10,
 					"size": [64, 64],
-					"tileNames": ["", "tile01", "tile02"],
+					"tileNames": ["Empty", "tile01", "tile02"],
 					"tiles": [
-							0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-							0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-							0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-							0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-							0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-							0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0,
+							2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2,
+							2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2,
+							2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2,
+							2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2,
+							2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2,
+							2, 0, 0, 0, 0, 2, 2, 2, 0, 0, 0, 0, 2,
+							2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2,
 							2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 2, 2, 2,
-							0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-							1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+							2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
 							1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
 							]
 				}    

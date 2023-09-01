@@ -1,0 +1,55 @@
+{
+	"actors": [
+		{
+			"type": "Actor",
+			"name": "Back_GameOver",
+			"persistent": true,
+			"transform": {
+				"position": [ 400, 300 ],
+				"scale": 1.3,
+				"rotation": 0
+			},
+			"components": [
+				{
+					"type": "Sprite",
+					"texturename": "Textures/Death.PNG"
+				}
+			]
+		},
+		{
+			"type": "Actor",
+			"name": "Back_GameOver_skull",
+			"persistent": true,
+			"transform": {
+				"position": [ 400, 250 ],
+				"scale": 0.5,
+				"rotation": 0
+			},
+			"components": [
+				{
+					"type": "Sprite",
+					"texturename": "Textures/skull.PNG"
+				}
+			]
+		},
+		{
+			"type": "Actor",
+			"name": "Title",
+			"persistent": true,
+			"transform": {
+				"position": [ 400, 150 ],
+				"scale": 2,
+				"rotation": 0
+			},
+			"components": [
+				{
+					"type": "TextRenderComponent",
+					"fontName": "Fonts/arcadeclassic.ttf",
+					"fontSize": 24,
+					"text": "Game Over",
+					"color": [ 200, 10, 0, 255 ]
+				}
+			]
+		}
+	]
+}

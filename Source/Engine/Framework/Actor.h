@@ -45,7 +45,7 @@ namespace jojo
 		class Game* m_game = nullptr;
 
 		jojo::Transform transform;
-		std::string tag;
+		std::string tag = "";
 		float health = 0;
 		float lifespan = -1;
 		bool persistent = false;

@@ -50,8 +50,6 @@ namespace jojo
 		b2PolygonShape shape;
 		shape.Set(vs, 4);
 
-		//shape.SetAsBox(worldSize.x, worldSize.y);
-
 		b2FixtureDef fixtureDef;
 		fixtureDef.density = data.density;
 		fixtureDef.friction = data.friction;

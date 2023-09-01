@@ -11,9 +11,7 @@ namespace jojo
 		Sprite::Initialize();
 
 		SetSequence(defaultSequenceName, false);
-		//if() source.w  == 0 h == 0 // updatesource
-
-		UpdateSource();
+		if(source.w == 0 && source.h == 0) UpdateSource();
 
 		return true;
 	}

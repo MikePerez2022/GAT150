@@ -28,7 +28,6 @@ public:
 	virtual void Draw(jojo::Renderer& renderer) override;
 
 	void SetState(eState state) { m_state = state; }
-	void addPoints(const jojo::Event& event);
 	void OnPlayerDead(const jojo::Event& event);
 
 	friend class Game;
@@ -36,9 +35,10 @@ public:
 	eState m_state = eState::Title;
 protected:
 	float m_spawnTimer = 0;
-	float m_spawnAsteroidTimer = 0;
-	float m_spawnTime = 3;
-	float m_spawnTimeAsteroid = 5;
+	float m_spawnTime = 5;
+
+	float rockTimer = 0;
+	float rockTime = 5;
 
 	float m_stateTimer = 0;
 };

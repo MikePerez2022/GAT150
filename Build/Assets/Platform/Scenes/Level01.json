@@ -1,0 +1,138 @@
+{
+	"actors": [
+		{
+			"type": "Actor",
+			"name": "Back_dun",
+			"persistent": true,
+			"active": false,
+			"transform": {
+				"position": [ 400, 300 ],
+				"scale": 1.35,
+				"rotation": 0
+			},
+			"components": [
+				{
+					"type": "Sprite",
+					"texturename": "Textures/dungeon.jpg"
+				}
+			]
+		},
+		{
+			"type": "Player",
+			"name": "Player",
+			"tag": "Player",
+			"persistent": true,
+			"speed": 12.5,
+			"maxspeed": 20,
+			"jump": 6.5,
+			"health": 100,
+			"transform": {
+				"position": [ 460, 300 ],
+				"scale": 1.2,
+				"rotation": 0
+			},
+			"components": [
+				{
+					"type": "SpriteAnim",
+					"defaultSequenceName": "idle",
+					"origin": [ 0.5, 2 ],
+					"sequences": [
+						{
+							"name": "idle",
+							"fps": 12,
+							"numColumns": 7,
+							"numRows": 11,
+							"startFrame": 1,
+							"endFrame": 4,
+							"textureName": "Textures/player.png"
+						},
+						{
+							"name": "run",
+							"fps": 12,
+							"numColumns": 7,
+							"numRows": 11,
+							"startFrame": 9,
+							"endFrame": 14,
+							"textureName": "Textures/player.png"
+						}
+					]
+				},
+				{
+					"type": "Box2DPhysicsComponent",
+					"damping": 0,
+					"gravityScale": 1,
+					"isDynamic": true,
+					"constrainAngle": true
+				},
+				{
+					"type": "Box2DCollisionComponent",
+					"restitution": 0
+				}
+			]
+		},
+		{
+			"type": "Actor",
+			"name": "Health",
+			"tag": "Health",
+			"persistent": true,
+			"transform": {
+				"position": [ 690, 645 ],
+				"scale": 1.5,
+				"rotation": 0
+			},
+			"components": [
+				{
+					"type": "SpriteAnim",
+					"defaultSequenceName": "idle",
+					"origin": [ 0.5, 2 ],
+					"sequences": [
+						{
+							"name": "idle",
+							"fps": 12,
+							"numColumns": 8,
+							"numRows": 1,
+							"startFrame": 1,
+							"endFrame": 8,
+							"textureName": "Textures/Health.png"
+						}
+					]
+				},
+				{
+					"type": "Box2DCollisionComponent"
+				}
+			]
+		},
+		{
+			"type": "Rock",
+			"name": "Rock",
+			"tag": "Rock",
+			"prototype": true,
+			"persistent": true,
+			"lifespan": 5,
+			"transform": {
+				"position": [ 400, 300 ],
+				"scale": 1,
+				"rotation": 0
+			},
+			"components": [
+				{
+					"type": "Sprite",
+					"texturename": "Textures/Slime.png"
+				},
+				{
+					"type": "Box2DPhysicsComponent",
+					"damping": 0,
+					"gravityScale": 1,
+					"isDynamic": true,
+					"constrainAngle": true
+				},
+				{
+					"type": "Box2DCollisionComponent",
+					"restitution": 0.3
+				}
+			]
+		}
+
+	]
+}
+

@@ -27,6 +27,7 @@ namespace jojo
 		bool Load(const std::string& filename);
 		void Read(const rapidjson::Value& value);
 
+
 		friend class Actor;
 
 	private:

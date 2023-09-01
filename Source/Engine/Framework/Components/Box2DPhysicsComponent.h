@@ -18,10 +18,10 @@ namespace jojo
 		void Update(float dt) override;
 		virtual void ApplyForce(const vec2& force) override;
 		virtual void ApplyTorque(float torque);
-		//virtual void SetGravityScale(float scale) override;
+		virtual void SetGravityScale(float scale);
 
 
-		virtual void SetVelocity(const vec2& velocity);
+		virtual void SetVelocity(const vec2& velocity) override;
 
 		friend class Box2DCollisionComponent;
 

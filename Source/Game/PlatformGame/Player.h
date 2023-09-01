@@ -11,16 +11,17 @@ namespace jojo
 		bool Initialize() override;
 		void Update(float dt) override;
 
-		void OnCollisionEnter(Actor* other) override;
-		void OnCollisionExit(Actor* other) override;
+		void OnCollision(Actor* other) override;
 
 	protected:
 		float speed = 0;
 		float jump = 0;
-		int groundCount = 0;
+		int Jumpcount = 0;
 		float maxspeed;
+		float jumpTime = 1.5;
+		float jumpTimer = 0;
 
-		PhysicsComponent* m_physicsComponent = nullptr;
+		Box2DPhysicsComponent* m_physicsComponent = nullptr;
 
 		class SpriteAnim* m_spriteAnim = nullptr;
 	};

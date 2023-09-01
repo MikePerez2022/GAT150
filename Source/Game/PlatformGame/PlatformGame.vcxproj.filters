@@ -23,6 +23,9 @@
     <ClCompile Include="Enemy.cpp">
       <Filter>Source</Filter>
     </ClCompile>
+    <ClCompile Include="Rock.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PlatformGame.h">
@@ -34,12 +37,24 @@
     <ClInclude Include="Enemy.h">
       <Filter>Source</Filter>
     </ClInclude>
+    <ClInclude Include="Rock.h">
+      <Filter>Source</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\..\Build\Assets\Platform\Scenes\platformscene.json">
+    <None Include="..\..\..\Build\Assets\Platform\Scenes\StartScene.json">
       <Filter>Assets</Filter>
     </None>
-    <None Include="..\..\..\Build\Assets\Platform\Scenes\tilemap.json">
+    <None Include="..\..\..\Build\Assets\Platform\Scenes\tilemap_01.json">
+      <Filter>Assets</Filter>
+    </None>
+    <None Include="..\..\..\Build\Assets\Platform\Scenes\GameOver.json">
+      <Filter>Assets</Filter>
+    </None>
+    <None Include="..\..\..\Build\Assets\Platform\Scenes\tilemap_02.json">
+      <Filter>Assets</Filter>
+    </None>
+    <None Include="..\..\..\Build\Assets\Platform\Scenes\Level01.json">
       <Filter>Assets</Filter>
     </None>
   </ItemGroup>
